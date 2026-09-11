@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personaliza tu ELLI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .customizer {
+            min-height: 100vh;
+            padding: 150px 7% 80px;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(171,255,0,.10), transparent 35%),
+                #080909;
+        }
+
+        .customizer-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .customizer-header .label {
+            color: #abff00;
+            letter-spacing: 3px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .customizer-header h1 {
+            color: white;
+            font-size: clamp(40px, 7vw, 90px);
+            margin: 0;
+        }
+
+        .customizer-header p {
+            color: #9fa4a4;
+            max-width: 650px;
+            margin: 20px auto;
+            line-height: 1.7;
+        }
+
+        .customizer-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* PANEL DE OPCIONES */
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .option-box {
+            border: 1px solid #292d2d;
+            background: #111313;
+            padding: 25px;
+        }
+
+        .option-title {
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+
+        .choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .choice {
+            background: #1b1e1e;
+            border: 1px solid #363b3b;
+            color: #c5c9c8;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: .3s;
+            font-family: inherit;
+        }
+
+        .choice:hover {
+            border-color: #abff00;
+            color: white;
+        }
+
+        .choice.active {
+            background: #abff00;
+            color: #080909;
+            border-color: #abff00;
+        }
+
+        /* MOCHILA */
+
+        .preview {
+            min-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #292d2d;
+            background:
+                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+            position: relative;
+        }
+
+        .preview-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #abff00;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        .backpack {
+            width: 270px;
+            height: 350px;
+            background: #242727;
+            border-radius: 45px 45px 35px 35px;
+            position: relative;
+            box-shadow: 0 0 60px rgba(171,255,0,.08);
+            transition: .4s;
+        }
+
+        /* PARTE SUPERIOR */
+
+        .backpack::before {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 45px;
+            border: 10px solid currentColor;
+            border-bottom: none;
+            border-radius: 50px 50px 0 0;
+            top: -25px;
+            left: 75px;
+            color: #242727;
+        }
+
+        /* PANEL SOLAR */
+
+        .solar-panel {
+            position: absolute;
+            width: 145px;
+            height: 115px;
+            top: 65px;
+            left: 62px;
+            background: #101212;
+            border: 4px solid #555;
+            transition: .4s;
+        }
+
+        .solar-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, transparent 31%, #555 32%, #555 34%, transparent 35%, transparent 65%, #555 66%, #555 68%, transparent 69%),
+                linear-gradient(0deg, transparent 31%, #555 32%, #555 34%, transparent 35%, transparent 65%, #555 66%, #555 68%, transparent 69%);
+        }
+
+        /* BOLSILLO */
+
+        .pocket {
+            position: absolute;
+            width: 170px;
+            height: 75px;
+            bottom: 35px;
+            left: 50px;
+            border: 3px solid #444;
+            border-radius: 10px;
+        }
+
+        /* USB */
+
+        .usb {
+            position: absolute;
+            width: 30px;
+            height: 18px;
+            background: #abff00;
+            right: -15px;
+            bottom: 80px;
+            border-radius: 3px;
+        }
+
+        /* MODELOS */
+
+        .model-urbana {
+            border-radius: 45px 45px 35px 35px;
+        }
+
+        .model-escolar {
+            border-radius: 20px;
+        }
+
+        .model-deportiva {
+            border-radius: 65px 65px 25px 25px;
+        }
+
+        .model-ejecutiva {
+            border-radius: 10px;
+        }
+
+        /* PANELES */
+
+        .panel-lineal {
+            border-radius: 5px;
+        }
+
+        .panel-cuadricula {
+            border-radius: 0;
+        }
+
+        .panel-redondo {
+            border-radius: 30px;
+        }
+
+        .panel-hexagonal {
+            clip-path: polygon(
+                15% 0,
+                85% 0,
+                100% 50%,
+                85% 100%,
+                15% 100%,
+                0 50%
+            );
+        }
+
+        .result {
+            margin-top: 25px;
+            border-top: 1px solid #292d2d;
+            padding-top: 20px;
+            color: #9fa4a4;
+            font-size: 13px;
+        }
+
+        .result strong {
+            color: white;
+        }
+
+        @media(max-width: 800px) {
+
+            .customizer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview {
+                min-height: 500px;
+                order: -1;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header class="nav">
+
+    <div class="nav-inner">
+
+        <a href="index.html" class="logo">
+            ELL<span>I</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="historia.html">HISTORIA</a>
+            <a href="equipo.html">EQUIPO</a>
+            <a href="mision.html">MISIÓN</a>
+            <a href="vision.html">VISIÓN</a>
+            <a href="personaliza.html">PERSONALIZA</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="customizer">
+
+    <div class="customizer-header">
+
+        <div class="label">
+            ELLI LAB — PERSONALIZACIÓN
+        </div>
+
+        <h1>
+            Crea tu ELLI
+        </h1>
+
+        <p>
+            Diseña tu mochila inteligente escogiendo el modelo,
+            el panel solar y el color que más te guste.
+        </p>
+
+    </div>
+
+
+    <div class="customizer-grid">
+
+
+        <!-- OPCIONES -->
+
+        <div class="options">
+
+
+            <div class="option-box">
+
+                <div class="option-title">
+                    01 — MODELO
+                </div>
+
+                <div class="choices">
+
+                    <button class="choice active"
+                        onclick="cambiarModelo('urbana', this)">
+                        Urbana
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarModelo('escolar', this)">
+                        Escolar
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarModelo('deportiva', this)">
+                        Deportiva
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarModelo('ejecutiva', this)">
+                        Ejecutiva
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="option-box">
+
+                <div class="option-title">
+                    02 — PANEL SOLAR
+                </div>
+
+                <div class="choices">
+
+                    <button class="choice active"
+                        onclick="cambiarPanel('cuadricula', this)">
+                        Cuadrícula
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarPanel('lineal', this)">
+                        Lineal
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarPanel('redondo', this)">
+                        Redondo
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarPanel('hexagonal', this)">
+                        Hexagonal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="option-box">
+
+                <div class="option-title">
+                    03 — COLOR
+                </div>
+
+                <div class="choices">
+
+                    <button class="choice active"
+                        onclick="cambiarColor('#242727', 'Negro', this)">
+                        Negro
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarColor('#e7e7e7', 'Blanco', this)">
+                        Blanco
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarColor('#536b48', 'Verde', this)">
+                        Verde
+                    </button>
+
+                    <button class="choice"
+                        onclick="cambiarColor('#8a6075', 'Rosado', this)">
+                        Rosado
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                Tu diseño:
+
+                <br><br>
+
+                <strong id="resultado">
+                    Mochila Urbana · Panel de Cuadrícula · Negro
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PREVISUALIZACIÓN -->
+
+        <div class="preview">
+
+            <div class="preview-label">
+                VISTA PREVIA — ELLI
+            </div>
+
+            <div class="backpack model-urbana" id="backpack">
+
+                <div
+                    class="solar-panel panel-cuadricula"
+                    id="solarPanel">
+                </div>
+
+                <div class="pocket"></div>
+
+                <div class="usb"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+<script>
+
+let modelo = "Urbana";
+let panel = "Cuadrícula";
+let color = "Negro";
+
+
+function cambiarModelo(nuevoModelo, boton) {
+
+    const mochila = document.getElementById("backpack");
+
+    mochila.className = "backpack model-" + nuevoModelo;
+
+    modelo = nuevoModelo.charAt(0).toUpperCase() + nuevoModelo.slice(1);
+
+    activarBoton(boton);
+
+    actualizarResultado();
+}
+
+
+function cambiarPanel(nuevoPanel, boton) {
+
+    const panelSolar = document.getElementById("solarPanel");
+
+    panelSolar.className = "solar-panel panel-" + nuevoPanel;
+
+    panel = nuevoPanel.charAt(0).toUpperCase() + nuevoPanel.slice(1);
+
+    activarBoton(boton);
+
+    actualizarResultado();
+}
+
+
+function cambiarColor(nuevoColor, nombreColor, boton) {
+
+    const mochila = document.getElementById("backpack");
+
+    mochila.style.background = nuevoColor;
+
+    mochila.style.boxShadow =
+        "0 0 60px " + nuevoColor + "33";
+
+    color = nombreColor;
+
+    activarBoton(boton);
+
+    actualizarResultado();
+}
+
+
+function activarBoton(boton) {
+
+    const grupo = boton.parentElement;
+
+    const botones = grupo.querySelectorAll(".choice");
+
+    botones.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+    boton.classList.add("active");
+}
+
+
+function actualizarResultado() {
+
+    document.getElementById("resultado").textContent =
+        "Mochila " + modelo +
+        " · Panel " + panel +
+        " · " + color;
+
+}
+
+</script>
+
+
+</body>
+</html>
