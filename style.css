@@ -550,3 +550,1515 @@ footer {
         align-items: flex-start;
     }
 }
+/* =========================================
+   ELLI - PAGINA PRINCIPAL SIN IMAGENES
+========================================= */
+
+.home-hero {
+    min-height: 650px;
+    padding: 75px max(5%, calc((100% - 1180px) / 2));
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: center;
+    gap: 35px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+}
+
+.home-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.home-copy .eyebrow {
+    margin-bottom: 28px;
+}
+
+.home-copy h1 {
+    font-size: clamp(48px, 6.4vw, 88px);
+    line-height: .94;
+    letter-spacing: -.075em;
+    font-weight: 900;
+}
+
+.home-copy h1 span {
+    color: var(--lime);
+}
+
+.home-description {
+    max-width: 390px;
+    margin-top: 25px;
+    color: var(--fog);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.home-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.home-actions .button {
+    margin-top: 25px;
+}
+
+.text-link {
+    margin-top: 25px;
+    color: var(--paper);
+    font-size: 12px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--lime);
+    padding-bottom: 5px;
+    transition: color .25s;
+}
+
+.text-link:hover {
+    color: var(--lime);
+}
+
+.home-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 45px;
+    color: var(--mid);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .09em;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 12px var(--lime);
+}
+
+/* ELLI COMO ELEMENTO VISUAL */
+
+.home-typography {
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 5%;
+    position: relative;
+    isolation: isolate;
+}
+
+.home-typography::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgba(171, 255, 0, .15);
+    border-radius: 50%;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.home-typography::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border: 1px solid rgba(171, 255, 0, .09);
+    border-radius: 50%;
+    right: calc(5% + 45px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.giant-elli {
+    font-size: clamp(100px, 15vw, 190px);
+    line-height: .85;
+    font-weight: 900;
+    letter-spacing: -.1em;
+    color: var(--paper);
+    position: relative;
+    z-index: 1;
+}
+
+.giant-elli span {
+    color: var(--lime);
+}
+
+.visual-line {
+    width: 75px;
+    height: 3px;
+    margin-top: 32px;
+    background: var(--lime);
+}
+
+.home-typography p {
+    margin-top: 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    color: var(--fog);
+}
+
+.visual-number {
+    margin-top: 40px;
+    color: var(--mid);
+    font-size: 10px;
+    letter-spacing: .12em;
+}
+
+.hero-index {
+    position: absolute;
+    bottom: 18px;
+    right: 40px;
+    color: var(--mid);
+    font-size: 10px;
+    letter-spacing: .08em;
+}
+
+/* ACCESOS A LAS SUBPAGINAS */
+
+.explore {
+    max-width: 1180px;
+    margin: auto;
+    padding: 95px 40px;
+    border-bottom: none;
+}
+
+.explore-heading {
+    margin-bottom: 45px;
+}
+
+.explore-heading h2 {
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.08;
+}
+
+.explore-heading h2 span {
+    color: var(--mid);
+}
+
+.explore-link {
+    display: grid;
+    grid-template-columns: 70px 1fr 35px;
+    align-items: center;
+    gap: 15px;
+    padding: 23px 5px;
+    border-top: 1px solid var(--line);
+    text-decoration: none;
+    transition: padding .25s, color .25s;
+}
+
+.explore-link:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.explore-number {
+    color: var(--lime);
+    font-size: 11px;
+    letter-spacing: .08em;
+}
+
+.explore-name {
+    font-size: clamp(18px, 2.5vw, 27px);
+    font-weight: 600;
+    letter-spacing: -.035em;
+}
+
+.explore-arrow {
+    color: var(--mid);
+    font-size: 25px;
+    text-align: right;
+    transition: color .25s, transform .25s;
+}
+
+.explore-link:hover {
+    padding-left: 15px;
+    color: var(--lime);
+}
+
+.explore-link:hover .explore-arrow {
+    color: var(--lime);
+    transform: translate(3px, -3px);
+}
+
+.explore-featured .explore-name {
+    color: var(--lime);
+}
+
+/* PIE DE PAGINA */
+
+.home-footer {
+    padding: 35px max(5%, calc((100% - 1180px) / 2));
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.home-footer .footer-logo {
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.home-footer .footer-logo span {
+    color: var(--lime);
+}
+
+.home-footer p,
+.home-footer > span {
+    color: var(--mid);
+    font-size: 11px;
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+    .home-hero {
+        grid-template-columns: 1fr;
+        padding: 65px 25px 55px;
+        gap: 20px;
+    }
+
+    .home-copy h1 {
+        font-size: clamp(53px, 12vw, 85px);
+    }
+
+    .home-typography {
+        min-height: 280px;
+        padding-left: 0;
+    }
+
+    .home-typography::before {
+        width: 240px;
+        height: 240px;
+        right: 5%;
+    }
+
+    .home-typography::after {
+        width: 170px;
+        height: 170px;
+        right: calc(5% + 35px);
+    }
+
+    .giant-elli {
+        font-size: clamp(100px, 22vw, 170px);
+    }
+
+    .hero-index {
+        right: 25px;
+    }
+
+    .explore {
+        padding: 70px 25px;
+    }
+
+    .home-footer {
+        padding: 30px 25px;
+    }
+}
+
+/* CELULARES */
+
+@media (max-width: 560px) {
+    .nav-inner {
+        align-items: flex-start;
+        gap: 18px;
+        flex-direction: column;
+    }
+
+    .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .home-copy h1 {
+        font-size: clamp(46px, 13vw, 68px);
+    }
+
+    .home-typography {
+        min-height: 250px;
+    }
+
+    .giant-elli {
+        font-size: clamp(95px, 25vw, 140px);
+    }
+
+    .explore-link {
+        grid-template-columns: 35px 1fr 25px;
+        gap: 10px;
+        padding: 21px 0;
+    }
+
+    .home-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* PORTADA SIN IMÁGENES */
+
+.home-typography {
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 5%;
+    position: relative;
+}
+
+.home-typography::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(171, 255, 0, .12);
+    border-radius: 50%;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.giant-elli {
+    font-size: clamp(100px, 17vw, 220px);
+    line-height: .85;
+    font-weight: 900;
+    letter-spacing: -.1em;
+    color: var(--paper);
+    position: relative;
+    z-index: 1;
+}
+
+.giant-elli span {
+    color: var(--lime);
+}
+
+.visual-line {
+    width: 80px;
+    height: 3px;
+    margin-top: 35px;
+    background: var(--lime);
+}
+
+.home-typography p {
+    margin-top: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: var(--fog);
+}
+
+.visual-number {
+    margin-top: 45px;
+    color: var(--mid);
+    font-size: 10px;
+    letter-spacing: .12em;
+}
+
+@media (max-width: 850px) {
+    .home-typography {
+        min-height: 280px;
+        padding-left: 0;
+    }
+
+    .home-typography::before {
+        width: 190px;
+        height: 190px;
+        right: 5%;
+    }
+
+    .giant-elli {
+        font-size: clamp(100px, 25vw, 170px);
+    }
+}
+
+/* ==========================================
+   ELLI — EQUIPO
+========================================== */
+
+.team-page {
+    overflow: hidden;
+}
+
+.team-hero {
+    max-width: 1180px;
+    margin: auto;
+    padding: 100px 40px 85px;
+    border-bottom: 1px solid var(--line);
+}
+
+.team-hero .eyebrow {
+    margin-bottom: 35px;
+}
+
+.team-hero h1 {
+    font-size: clamp(55px, 9vw, 105px);
+    line-height: .94;
+    letter-spacing: -.075em;
+    font-weight: 900;
+}
+
+.team-hero h1 span {
+    color: var(--lime);
+}
+
+.team-intro {
+    max-width: 390px;
+    margin-top: 30px;
+    color: var(--fog);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* LISTA DE INTEGRANTES */
+
+.team-members {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 40px 65px;
+}
+
+.team-member {
+    display: grid;
+    grid-template-columns: 70px 1fr 30px;
+    align-items: center;
+    gap: 25px;
+    padding: 35px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding .25s;
+}
+
+.team-member:hover {
+    padding-left: 12px;
+}
+
+.member-number {
+    color: var(--lime);
+    font-size: 12px;
+    letter-spacing: .08em;
+}
+
+.member-info h2 {
+    font-size: clamp(25px, 4vw, 39px);
+    letter-spacing: -.05em;
+    margin-bottom: 10px;
+}
+
+.member-info h2 span {
+    color: var(--lime);
+}
+
+.member-info p {
+    color: var(--fog);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.member-symbol {
+    color: var(--lime);
+    font-size: 23px;
+}
+
+/* CIERRE */
+
+.team-end {
+    padding: 90px 40px 110px;
+    border-top: 1px solid var(--line);
+}
+
+.team-end .label {
+    margin-bottom: 25px;
+}
+
+.team-end h2 {
+    font-size: clamp(45px, 7vw, 80px);
+    line-height: 1;
+    letter-spacing: -.07em;
+    margin-bottom: 30px;
+}
+
+.team-end h2 span {
+    color: var(--lime);
+}
+
+.team-end .text-link {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .team-hero {
+        padding: 75px 25px 60px;
+    }
+
+    .team-hero h1 {
+        font-size: clamp(48px, 10vw, 72px);
+    }
+
+    .team-members {
+        padding: 20px 25px 50px;
+    }
+
+    .team-member {
+        grid-template-columns: 35px 1fr 20px;
+        gap: 12px;
+        padding: 28px 0;
+    }
+
+    .member-info h2 {
+        font-size: 25px;
+    }
+
+    .member-info p {
+        font-size: 12px;
+    }
+
+    .team-end {
+        padding: 70px 25px 85px;
+    }
+}
+
+/* ==========================================
+   ELLI — MISIÓN Y VISIÓN
+========================================== */
+
+.purpose-page {
+    overflow: hidden;
+}
+
+.purpose-hero {
+    min-height: 560px;
+    padding: 95px max(5%, calc((100% - 1180px) / 2)) 85px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--line);
+}
+
+.purpose-hero .eyebrow {
+    margin-bottom: 35px;
+}
+
+.purpose-hero h1 {
+    font-size: clamp(62px, 10vw, 120px);
+    line-height: .9;
+    letter-spacing: -.08em;
+    font-weight: 900;
+}
+
+.purpose-hero h1 span {
+    color: var(--lime);
+}
+
+.purpose-intro {
+    max-width: 390px;
+    margin-top: 35px;
+    color: var(--fog);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.purpose-index {
+    position: absolute;
+    right: 5%;
+    bottom: 22px;
+    color: var(--mid);
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+.purpose-content {
+    max-width: 1180px;
+    margin: auto;
+    padding: 100px 40px 115px;
+}
+
+.purpose-content .label {
+    margin-bottom: 28px;
+}
+
+.purpose-content h2 {
+    font-size: clamp(48px, 7vw, 85px);
+    line-height: .98;
+    letter-spacing: -.07em;
+    margin-bottom: 30px;
+}
+
+.purpose-content h2 span {
+    color: var(--lime);
+}
+
+.purpose-content > p:not(.label) {
+    max-width: 600px;
+    color: var(--fog);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.purpose-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 35px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--lime);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    transition: color .25s;
+}
+
+.purpose-link span {
+    color: var(--lime);
+    font-size: 20px;
+}
+
+.purpose-link:hover {
+    color: var(--lime);
+}
+
+/* DETALLE PROPIO DE VISIÓN */
+
+.vision-page .purpose-hero h1 span {
+    color: var(--lime);
+}
+
+.vision-page .purpose-content {
+    border-top: 0;
+}
+
+/* ADAPTACIÓN A CELULARES */
+
+@media (max-width: 700px) {
+    .purpose-hero {
+        min-height: 470px;
+        padding: 75px 25px;
+    }
+
+    .purpose-hero h1 {
+        font-size: clamp(52px, 12vw, 82px);
+    }
+
+    .purpose-intro {
+        max-width: 320px;
+        margin-top: 28px;
+    }
+
+    .purpose-content {
+        padding: 75px 25px 90px;
+    }
+
+    .purpose-content h2 {
+        font-size: 55px;
+    }
+
+    .purpose-content > p:not(.label) {
+        font-size: 14px;
+    }
+}
+
+/* Botón para descubrir la historia */
+
+.home-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.home-actions .button-outline {
+    background: transparent;
+    color: var(--paper);
+    border: 1px solid var(--lime);
+}
+
+.home-actions .button-outline:hover {
+    background: var(--lime);
+    color: var(--black);
+}
+
+@media (max-width: 560px) {
+    .home-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .home-actions .button {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* BOTONES PARA RECORRER LAS SUBPÁGINAS */
+.page-navigation {
+    max-width: 1200px;
+    margin: 70px auto 30px;
+    padding: 25px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid rgba(240, 241, 239, 0.13);
+}
+
+.page-button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.page-button span {
+    font-size: 22px;
+}
+
+.page-button small,
+.page-button strong {
+    display: block;
+}
+
+.page-button small {
+    color: #9fa4a4;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.page-button strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.page-back {
+    color: #f0f1ef;
+    border: 1px solid #292d2d;
+}
+
+.page-back:hover {
+    border-color: #abff00;
+    color: #abff00;
+}
+
+.page-next {
+    color: #080909;
+    background: #abff00;
+    border: 1px solid #abff00;
+}
+
+.page-next:hover {
+    background: transparent;
+    color: #abff00;
+}
+
+@media (max-width: 500px) {
+    .page-navigation {
+        padding: 20px 0;
+        gap: 10px;
+    }
+
+    .page-button {
+        padding: 12px 10px;
+        gap: 8px;
+    }
+
+    .page-button strong {
+        font-size: 11px;
+    }
+
+    .page-button small {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+/* NAVEGACIÓN DISCRETA ENTRE PÁGINAS ELLI */
+.page-navigation {
+    max-width: 1100px;
+    margin: 35px auto 0;
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid rgba(240, 241, 239, 0.10);
+}
+
+.page-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    background: transparent;
+    border: none;
+    color: #b9bdbc;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.page-button:hover {
+    color: #abff00;
+    background: transparent;
+}
+
+.page-button span {
+    font-size: 15px;
+}
+
+.page-button small {
+    display: block;
+    color: #6f7475;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.page-button strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.page-back,
+.page-next {
+    background: transparent;
+    border: none;
+    color: #b9bdbc;
+}
+
+@media (max-width: 600px) {
+    .page-navigation {
+        margin-top: 25px;
+        padding: 18px 5%;
+    }
+
+    .page-button strong {
+        font-size: 11px;
+    }
+}
+
+/* =====================================
+   ELLI — EFECTOS FUTURISTAS
+   Negro + verde neón
+===================================== */
+
+:root {
+    --elli-neon: #abff00;
+    --elli-black: #080909;
+}
+
+/* BRILLO AMBIENTAL EN EL FONDO */
+body {
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -30%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at 15% 25%,
+            rgba(171, 255, 0, 0.055),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 85% 75%,
+            rgba(171, 255, 0, 0.035),
+            transparent 35%
+        );
+    animation: elli-background-glow 12s ease-in-out infinite alternate;
+}
+
+@keyframes elli-background-glow {
+    from {
+        transform: translate3d(-1%, -1%, 0);
+        opacity: 0.65;
+    }
+
+    to {
+        transform: translate3d(1%, 1%, 0);
+        opacity: 1;
+    }
+}
+
+/* APARICIÓN SUAVE DEL CONTENIDO */
+main {
+    animation: elli-page-enter 0.8s ease both;
+}
+
+@keyframes elli-page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TÍTULOS CON BRILLO SUTIL */
+main h1 {
+    animation: elli-title-enter 0.9s ease both;
+}
+
+@keyframes elli-title-enter {
+    from {
+        opacity: 0;
+        letter-spacing: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ENLACES CON EFECTO NEÓN */
+a {
+    transition:
+        color 0.25s ease,
+        border-color 0.25s ease,
+        text-shadow 0.25s ease;
+}
+
+a:hover {
+    text-shadow: 0 0 12px rgba(171, 255, 0, 0.25);
+}
+
+/* BOTONES: MOVIMIENTO Y BRILLO */
+button,
+.button,
+.page-button {
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+button:hover,
+.button:hover {
+    box-shadow: 0 0 18px rgba(171, 255, 0, 0.12);
+}
+
+/* NAVEGACIÓN DISCRETA */
+.page-button:hover {
+    transform: translateX(3px);
+    text-shadow: 0 0 12px rgba(171, 255, 0, 0.25);
+}
+
+/* TARJETAS Y BLOQUES INTERACTIVOS */
+.option-box,
+.member-card,
+.product-card {
+    transition:
+        border-color 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.option-box:hover,
+.member-card:hover,
+.product-card:hover {
+    border-color: rgba(171, 255, 0, 0.45);
+    box-shadow: 0 0 24px rgba(171, 255, 0, 0.045);
+}
+
+/* MOVIMIENTO SUAVE DE LA MOCHILA */
+.backpack {
+    animation: elli-backpack-float 5s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes elli-backpack-float {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -7px;
+    }
+}
+
+/* EFECTO AL CAMBIAR OPCIONES */
+.choice {
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.choice:hover {
+    transform: translateY(-2px);
+}
+
+.choice.active {
+    box-shadow: 0 0 14px rgba(171, 255, 0, 0.13);
+}
+
+/* RESPETO POR QUIEN PREFIERE MENOS MOVIMIENTO */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================
+   ELLI FUTURISTA — EFECTOS NEÓN
+   Colores: negro + verde #ABFF00
+   ========================================== */
+
+:root {
+    --elli-neon: #ABFF00;
+    --elli-neon-soft: rgba(171, 255, 0, 0.18);
+    --elli-neon-glow: rgba(171, 255, 0, 0.42);
+    --elli-black: #080909;
+}
+
+/* 1. FONDO CON LUCES EN MOVIMIENTO */
+
+body {
+    background-color: var(--elli-black);
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -25%;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(171, 255, 0, 0.12),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(171, 255, 0, 0.09),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(171, 255, 0, 0.035),
+            transparent 45%
+        );
+
+    animation: elli-energy 10s ease-in-out infinite alternate;
+}
+
+@keyframes elli-energy {
+    0% {
+        transform: translate(-3%, -2%) scale(1);
+    }
+
+    50% {
+        transform: translate(2%, 2%) scale(1.04);
+    }
+
+    100% {
+        transform: translate(3%, -1%) scale(1.08);
+    }
+}
+
+/* 2. BRILLO VERDE EN LOS TÍTULOS */
+
+h1 {
+    text-shadow:
+        0 0 8px rgba(171, 255, 0, 0.20),
+        0 0 22px rgba(171, 255, 0, 0.10);
+
+    animation: elli-title-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes elli-title-glow {
+    from {
+        text-shadow:
+            0 0 5px rgba(171, 255, 0, 0.15),
+            0 0 12px rgba(171, 255, 0, 0.08);
+    }
+
+    to {
+        text-shadow:
+            0 0 10px rgba(171, 255, 0, 0.38),
+            0 0 28px rgba(171, 255, 0, 0.18);
+    }
+}
+
+/* 3. LÍNEA LUMINOSA EN BOTONES */
+
+button,
+.button,
+.page-button {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+button::after,
+.button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 70%;
+    height: 100%;
+
+    background: linear-gradient(
+        110deg,
+        transparent,
+        rgba(171, 255, 0, 0.16),
+        transparent
+    );
+
+    pointer-events: none;
+    transition: left 0.6s ease;
+}
+
+button:hover::after,
+.button:hover::after {
+    left: 150%;
+}
+
+button:hover,
+.button:hover {
+    border-color: var(--elli-neon);
+    box-shadow:
+        0 0 12px rgba(171, 255, 0, 0.18),
+        0 0 28px rgba(171, 255, 0, 0.08);
+}
+
+/* 4. EFECTO INTERACTIVO PARA ENLACES */
+
+a {
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--elli-neon);
+    text-shadow: 0 0 12px rgba(171, 255, 0, 0.32);
+}
+
+/* 5. APARICIÓN SUAVE DEL CONTENIDO */
+
+main {
+    animation: elli-content-enter 0.75s ease both;
+}
+
+@keyframes elli-content-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 6. BORDES NEÓN EN TARJETAS Y OPCIONES */
+
+.member-card,
+.product-card,
+.option-box {
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.member-card:hover,
+.product-card:hover,
+.option-box:hover {
+    border-color: rgba(171, 255, 0, 0.55);
+
+    box-shadow:
+        0 0 12px rgba(171, 255, 0, 0.10),
+        inset 0 0 16px rgba(171, 255, 0, 0.025);
+}
+
+/* 7. MOCHILA CON MOVIMIENTO SUAVE */
+
+.backpack {
+    animation: elli-backpack-float 4s ease-in-out infinite;
+}
+
+@keyframes elli-backpack-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* 8. OPCIONES DE PERSONALIZACIÓN */
+
+.choice {
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.choice:hover {
+    transform: translateY(-2px);
+}
+
+.choice.active {
+    box-shadow: 0 0 14px rgba(171, 255, 0, 0.20);
+}
+
+/* 9. NAVEGACIÓN ENTRE SUBPÁGINAS */
+
+.page-button:hover {
+    color: var(--elli-neon);
+    text-shadow: 0 0 12px rgba(171, 255, 0, 0.28);
+}
+
+/* 10. EVITAR ANIMACIONES EXCESIVAS SI SE PREFIERE */
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    h1,
+    main,
+    .backpack {
+        animation: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================
+   ELLI — FONDO ANIMADO TECNOLÓGICO
+   Partículas, circuitos y energía neón
+   ========================================== */
+
+body {
+    position: relative;
+    isolation: isolate;
+    background-color: #080909;
+}
+
+/* Capa de luces verdes ambientales */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40%;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(171, 255, 0, 0.13),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 80% 65%,
+            rgba(171, 255, 0, 0.10),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(0, 180, 70, 0.07),
+            transparent 35%
+        );
+
+    animation: elli-energy-background 14s ease-in-out infinite alternate;
+}
+
+@keyframes elli-energy-background {
+    0% {
+        transform: translate(-2%, -1%) scale(1);
+    }
+
+    50% {
+        transform: translate(2%, 2%) scale(1.06);
+    }
+
+    100% {
+        transform: translate(-1%, 3%) scale(1.1);
+    }
+}
+
+/* Capa de circuitos digitales */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            transparent 49.7%,
+            rgba(171, 255, 0, 0.075) 50%,
+            transparent 50.3%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 49.7%,
+            rgba(171, 255, 0, 0.055) 50%,
+            transparent 50.3%
+        );
+
+    background-size: 74px 74px;
+    opacity: 0.25;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+
+    animation: elli-circuit-move 22s linear infinite;
+}
+
+@keyframes elli-circuit-move {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 74px 74px;
+    }
+}
+
+/* Partículas luminosas en las esquinas */
+.elli-particles {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.elli-particles span {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+
+    width: var(--size);
+    height: var(--size);
+
+    border-radius: 50%;
+    background: #ABFF00;
+
+    opacity: 0;
+    box-shadow:
+        0 0 6px rgba(171, 255, 0, 0.9),
+        0 0 16px rgba(171, 255, 0, 0.45);
+
+    animation:
+        elli-particle-float
+        var(--duration)
+        var(--delay)
+        ease-in-out infinite;
+}
+
+@keyframes elli-particle-float {
+    0% {
+        transform: translate3d(0, 25px, 0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.75;
+    }
+
+    70% {
+        opacity: 0.45;
+    }
+
+    100% {
+        transform: translate3d(15px, -100px, 0);
+        opacity: 0;
+    }
+}
+
+/* Resplandor en bordes y elementos interactivos */
+button:hover,
+.button:hover {
+    box-shadow:
+        0 0 12px rgba(171, 255, 0, 0.22),
+        0 0 28px rgba(171, 255, 0, 0.10);
+}
+
+/* Accesibilidad: reducir movimiento si se solicita */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    .elli-particles span {
+        animation: none !important;
+    }
+}
+
