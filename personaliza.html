@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Personaliza tu ELLI</title>
 
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* CONFIGURACIÓN GENERAL */
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            background: #080909;
+            color: #f0f1ef;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* PÁGINA DE PERSONALIZACIÓN */
         .customizer {
             min-height: 100vh;
-            padding: 150px 7% 80px;
+            padding: 130px 7% 80px;
             background:
-                radial-gradient(circle at 50% 30%, rgba(171,255,0,.10), transparent 35%),
+                radial-gradient(
+                    circle at 50% 25%,
+                    rgba(171, 255, 0, 0.09),
+                    transparent 35%
+                ),
                 #080909;
         }
 
         .customizer-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin: 0 auto 55px;
+            max-width: 850px;
         }
 
         .customizer-header .label {
@@ -32,47 +51,48 @@
         }
 
         .customizer-header h1 {
-            color: white;
-            font-size: clamp(40px, 7vw, 90px);
+            color: #ffffff;
+            font-size: clamp(40px, 7vw, 82px);
             margin: 0;
+            letter-spacing: -3px;
         }
 
         .customizer-header p {
             color: #9fa4a4;
             max-width: 650px;
             margin: 20px auto;
-            line-height: 1.7;
+            line-height: 1.8;
+            font-size: 14px;
         }
 
         .customizer-grid {
             max-width: 1200px;
             margin: auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+            align-items: stretch;
         }
 
-        /* PANEL DE OPCIONES */
-
+        /* OPCIONES */
         .options {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 20px;
         }
 
         .option-box {
             border: 1px solid #292d2d;
             background: #111313;
-            padding: 25px;
+            padding: 24px;
         }
 
         .option-title {
-            color: white;
-            font-size: 14px;
+            color: #ffffff;
+            font-size: 13px;
             font-weight: 700;
             margin-bottom: 18px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .choices {
@@ -85,15 +105,15 @@
             background: #1b1e1e;
             border: 1px solid #363b3b;
             color: #c5c9c8;
-            padding: 12px 15px;
+            padding: 12px 14px;
             cursor: pointer;
-            transition: .3s;
-            font-family: inherit;
+            transition: 0.25s;
+            font-size: 12px;
         }
 
         .choice:hover {
             border-color: #abff00;
-            color: white;
+            color: #ffffff;
         }
 
         .choice.active {
@@ -102,66 +122,111 @@
             border-color: #abff00;
         }
 
-        /* MOCHILA */
-
+        /* PREVISUALIZACIÓN */
         .preview {
-            min-height: 600px;
+            min-height: 650px;
             display: flex;
             justify-content: center;
             align-items: center;
             border: 1px solid #292d2d;
             background:
-                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-            background-size: 40px 40px;
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+            background-size: 35px 35px;
             position: relative;
+            overflow: hidden;
         }
 
         .preview-label {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 22px;
+            left: 22px;
             color: #abff00;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 2px;
         }
 
-        .backpack {
-            width: 270px;
-            height: 350px;
-            background: #242727;
-            border-radius: 45px 45px 35px 35px;
-            position: relative;
-            box-shadow: 0 0 60px rgba(171,255,0,.08);
-            transition: .4s;
+        .preview::after {
+            content: "ELLI";
+            position: absolute;
+            bottom: 12px;
+            right: 20px;
+            font-size: 55px;
+            font-weight: 900;
+            letter-spacing: -4px;
+            color: rgba(255,255,255,0.035);
+            pointer-events: none;
         }
 
-        /* PARTE SUPERIOR */
+        /* MOCHILA BASE */
+        .backpack {
+            --bag-color: #242727;
 
+            position: relative;
+            width: 270px;
+            height: 350px;
+            flex-shrink: 0;
+            background: var(--bag-color);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+            transition:
+                width 0.35s ease,
+                height 0.35s ease,
+                border-radius 0.35s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+            z-index: 1;
+        }
+
+        /* ASA SUPERIOR */
         .backpack::before {
             content: "";
             position: absolute;
-            width: 120px;
-            height: 45px;
-            border: 10px solid currentColor;
+            width: 35%;
+            height: 42px;
+            border: 9px solid var(--bag-color);
             border-bottom: none;
-            border-radius: 50px 50px 0 0;
+            border-radius: 35px 35px 0 0;
             top: -25px;
-            left: 75px;
-            color: #242727;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: border-color 0.25s;
+        }
+
+        /* COSTURAS DECORATIVAS */
+        .backpack::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: inherit;
+            pointer-events: none;
         }
 
         /* PANEL SOLAR */
-
         .solar-panel {
             position: absolute;
-            width: 145px;
-            height: 115px;
-            top: 65px;
-            left: 62px;
-            background: #101212;
-            border: 4px solid #555;
-            transition: .4s;
+            width: 54%;
+            height: 32%;
+            top: 20%;
+            left: 23%;
+            background: #101a20;
+            border: 4px solid #50595c;
+            border-radius: 3px;
+            overflow: hidden;
+            transition:
+                width 0.35s,
+                height 0.35s,
+                top 0.35s,
+                left 0.35s,
+                border-radius 0.35s;
+            z-index: 2;
         }
 
         .solar-panel::after {
@@ -169,64 +234,230 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(90deg, transparent 31%, #555 32%, #555 34%, transparent 35%, transparent 65%, #555 66%, #555 68%, transparent 69%),
-                linear-gradient(0deg, transparent 31%, #555 32%, #555 34%, transparent 35%, transparent 65%, #555 66%, #555 68%, transparent 69%);
+                linear-gradient(
+                    90deg,
+                    transparent 31%,
+                    #657176 32%,
+                    #657176 34%,
+                    transparent 35%,
+                    transparent 65%,
+                    #657176 66%,
+                    #657176 68%,
+                    transparent 69%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 31%,
+                    #657176 32%,
+                    #657176 34%,
+                    transparent 35%,
+                    transparent 65%,
+                    #657176 66%,
+                    #657176 68%,
+                    transparent 69%
+                );
+            pointer-events: none;
         }
 
-        /* BOLSILLO */
-
+        /* BOLSILLO DELANTERO */
         .pocket {
             position: absolute;
-            width: 170px;
-            height: 75px;
-            bottom: 35px;
-            left: 50px;
-            border: 3px solid #444;
+            width: 64%;
+            height: 21%;
+            bottom: 10%;
+            left: 18%;
+            border: 3px solid rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.10);
             border-radius: 10px;
+            transition:
+                width 0.35s,
+                height 0.35s,
+                bottom 0.35s,
+                left 0.35s,
+                border-radius 0.35s;
+            z-index: 2;
         }
 
-        /* USB */
+        .pocket::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 15%;
+            width: 70%;
+            height: 3px;
+            background: rgba(255,255,255,0.15);
+        }
 
+        /* CONEXIÓN USB */
         .usb {
             position: absolute;
             width: 30px;
             height: 18px;
             background: #abff00;
             right: -15px;
-            bottom: 80px;
-            border-radius: 3px;
+            bottom: 25%;
+            border: 3px solid #080909;
+            border-radius: 4px;
+            box-shadow: 0 0 14px rgba(171,255,0,0.35);
+            z-index: 3;
         }
 
-        /* MODELOS */
+        .usb::after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #080909;
+            top: 3px;
+            left: 9px;
+        }
 
+        /* MODELO 1: URBANA */
         .model-urbana {
+            width: 270px;
+            height: 350px;
             border-radius: 45px 45px 35px 35px;
         }
 
-        .model-escolar {
-            border-radius: 20px;
+        .model-urbana .solar-panel {
+            width: 54%;
+            height: 32%;
+            top: 20%;
+            left: 23%;
         }
 
-        .model-deportiva {
-            border-radius: 65px 65px 25px 25px;
-        }
-
-        .model-ejecutiva {
+        .model-urbana .pocket {
+            width: 64%;
+            height: 21%;
+            left: 18%;
+            bottom: 10%;
             border-radius: 10px;
         }
 
-        /* PANELES */
+        /* MODELO 2: ESCOLAR */
+        .model-escolar {
+            width: 285px;
+            height: 375px;
+            border-radius: 25px 25px 12px 12px;
+        }
 
-        .panel-lineal {
+        .model-escolar .solar-panel {
+            width: 60%;
+            height: 27%;
+            top: 17%;
+            left: 20%;
+        }
+
+        .model-escolar .pocket {
+            width: 76%;
+            height: 25%;
+            left: 12%;
+            bottom: 8%;
             border-radius: 5px;
         }
 
+        .model-escolar .usb {
+            bottom: 28%;
+        }
+
+        /* MODELO 3: DEPORTIVA */
+        .model-deportiva {
+            width: 300px;
+            height: 305px;
+            border-radius: 70px 70px 28px 28px;
+        }
+
+        .model-deportiva .solar-panel {
+            width: 49%;
+            height: 29%;
+            top: 22%;
+            left: 25.5%;
+            border-radius: 20px;
+        }
+
+        .model-deportiva .pocket {
+            width: 70%;
+            height: 20%;
+            left: 15%;
+            bottom: 10%;
+            border-radius: 25px;
+        }
+
+        .model-deportiva .usb {
+            bottom: 24%;
+        }
+
+        /* MODELO 4: EJECUTIVA */
+        .model-ejecutiva {
+            width: 265px;
+            height: 350px;
+            border-radius: 12px;
+        }
+
+        .model-ejecutiva .solar-panel {
+            width: 66%;
+            height: 25%;
+            top: 18%;
+            left: 17%;
+            border-radius: 2px;
+        }
+
+        .model-ejecutiva .pocket {
+            width: 66%;
+            height: 18%;
+            left: 17%;
+            bottom: 12%;
+            border-radius: 3px;
+        }
+
+        .model-ejecutiva .usb {
+            bottom: 25%;
+        }
+
+        /* FORMAS DEL PANEL SOLAR */
         .panel-cuadricula {
-            border-radius: 0;
+            border-radius: 2px;
+        }
+
+        .panel-lineal::after {
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0,
+                    transparent 17%,
+                    #657176 18%,
+                    #657176 20%,
+                    transparent 21%
+                );
         }
 
         .panel-redondo {
-            border-radius: 30px;
+            border-radius: 35px;
+        }
+
+        .panel-redondo::after {
+            background:
+                radial-gradient(
+                    circle,
+                    transparent 48%,
+                    #657176 50%,
+                    #657176 53%,
+                    transparent 55%
+                ),
+                linear-gradient(
+                    90deg,
+                    transparent 48%,
+                    #657176 49%,
+                    #657176 51%,
+                    transparent 52%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 48%,
+                    #657176 49%,
+                    #657176 51%,
+                    transparent 52%
+                );
         }
 
         .panel-hexagonal {
@@ -238,310 +469,402 @@
                 15% 100%,
                 0 50%
             );
+            border-radius: 0;
         }
 
+        .panel-hexagonal::after {
+            background:
+                repeating-linear-gradient(
+                    60deg,
+                    transparent 0,
+                    transparent 25%,
+                    #657176 26%,
+                    #657176 28%,
+                    transparent 29%,
+                    transparent 50%
+                ),
+                repeating-linear-gradient(
+                    -60deg,
+                    transparent 0,
+                    transparent 25%,
+                    #657176 26%,
+                    #657176 28%,
+                    transparent 29%,
+                    transparent 50%
+                );
+        }
+
+        /* RESUMEN DEL DISEÑO */
         .result {
-            margin-top: 25px;
+            margin-top: 5px;
             border-top: 1px solid #292d2d;
             padding-top: 20px;
             color: #9fa4a4;
             font-size: 13px;
+            line-height: 1.8;
         }
 
         .result strong {
-            color: white;
+            color: #abff00;
+            font-weight: 600;
         }
 
-        @media(max-width: 800px) {
+        .reset-button {
+            margin-top: 15px;
+            padding: 12px 16px;
+            background: transparent;
+            border: 1px solid #abff00;
+            color: #abff00;
+            cursor: pointer;
+            font-size: 11px;
+            letter-spacing: 1px;
+            transition: 0.25s;
+        }
+
+        .reset-button:hover {
+            background: #abff00;
+            color: #080909;
+        }
+
+        /* AJUSTES PARA CELULARES */
+        @media (max-width: 800px) {
+            .customizer {
+                padding: 110px 5% 50px;
+            }
 
             .customizer-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
 
             .preview {
-                min-height: 500px;
-                order: -1;
+                min-height: 520px;
+                grid-row: 1;
             }
 
+            .customizer-header {
+                margin-bottom: 30px;
+            }
+
+            .customizer-header h1 {
+                letter-spacing: -2px;
+            }
+
+            .option-box {
+                padding: 20px;
+            }
         }
 
+        @media (max-width: 420px) {
+            .preview {
+                min-height: 460px;
+            }
+
+            .model-urbana {
+                transform: scale(0.88);
+            }
+
+            .model-escolar {
+                transform: scale(0.82);
+            }
+
+            .model-deportiva {
+                transform: scale(0.85);
+            }
+
+            .model-ejecutiva {
+                transform: scale(0.9);
+            }
+
+            .choice {
+                padding: 10px 11px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<header class="nav">
+    <!-- MENÚ -->
+    <header class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">ELL<span>I</span></a>
 
-    <div class="nav-inner">
-
-        <a href="index.html" class="logo">
-            ELL<span>I</span>
-        </a>
-
-        <nav class="nav-links">
-            <a href="historia.html">HISTORIA</a>
-            <a href="equipo.html">EQUIPO</a>
-            <a href="mision.html">MISIÓN</a>
-            <a href="vision.html">VISIÓN</a>
-            <a href="personaliza.html">PERSONALIZA</a>
-        </nav>
-
-    </div>
-
-</header>
-
-
-<main class="customizer">
-
-    <div class="customizer-header">
-
-        <div class="label">
-            ELLI LAB — PERSONALIZACIÓN
+            <nav class="nav-links">
+                <a href="historia.html">HISTORIA</a>
+                <a href="equipo.html">EQUIPO</a>
+                <a href="mision.html">MISIÓN</a>
+                <a href="vision.html">VISIÓN</a>
+                <a href="personaliza.html">PERSONALIZA</a>
+            </nav>
         </div>
+    </header>
 
-        <h1>
-            Crea tu ELLI
-        </h1>
+    <main class="customizer">
 
-        <p>
-            Diseña tu mochila inteligente escogiendo el modelo,
-            el panel solar y el color que más te guste.
-        </p>
+        <!-- ENCABEZADO -->
+        <section class="customizer-header">
+            <div class="label">ELLI LAB — PERSONALIZACIÓN</div>
+            <h1>Crea tu ELLI</h1>
+            <p>
+                Diseña tu mochila inteligente escogiendo el modelo,
+                la forma del panel solar y el color que más te guste.
+            </p>
+        </section>
 
-    </div>
+        <div class="customizer-grid">
 
+            <!-- OPCIONES -->
+            <section class="options">
 
-    <div class="customizer-grid">
+                <div class="option-box">
+                    <div class="option-title">01 — MODELO</div>
 
+                    <div class="choices">
+                        <button type="button" class="choice active"
+                            onclick="cambiarModelo('urbana', this)">
+                            Urbana
+                        </button>
 
-        <!-- OPCIONES -->
+                        <button type="button" class="choice"
+                            onclick="cambiarModelo('escolar', this)">
+                            Escolar
+                        </button>
 
-        <div class="options">
+                        <button type="button" class="choice"
+                            onclick="cambiarModelo('deportiva', this)">
+                            Deportiva
+                        </button>
 
-
-            <div class="option-box">
-
-                <div class="option-title">
-                    01 — MODELO
+                        <button type="button" class="choice"
+                            onclick="cambiarModelo('ejecutiva', this)">
+                            Ejecutiva
+                        </button>
+                    </div>
                 </div>
 
-                <div class="choices">
+                <div class="option-box">
+                    <div class="option-title">02 — PANEL SOLAR</div>
 
-                    <button class="choice active"
-                        onclick="cambiarModelo('urbana', this)">
-                        Urbana
-                    </button>
+                    <div class="choices">
+                        <button type="button" class="choice active"
+                            onclick="cambiarPanel('cuadricula', this)">
+                            Cuadrícula
+                        </button>
 
-                    <button class="choice"
-                        onclick="cambiarModelo('escolar', this)">
-                        Escolar
-                    </button>
+                        <button type="button" class="choice"
+                            onclick="cambiarPanel('lineal', this)">
+                            Lineal
+                        </button>
 
-                    <button class="choice"
-                        onclick="cambiarModelo('deportiva', this)">
-                        Deportiva
-                    </button>
+                        <button type="button" class="choice"
+                            onclick="cambiarPanel('redondo', this)">
+                            Redondo
+                        </button>
 
-                    <button class="choice"
-                        onclick="cambiarModelo('ejecutiva', this)">
-                        Ejecutiva
-                    </button>
-
+                        <button type="button" class="choice"
+                            onclick="cambiarPanel('hexagonal', this)">
+                            Hexagonal
+                        </button>
+                    </div>
                 </div>
 
-            </div>
+                <div class="option-box">
+                    <div class="option-title">03 — COLOR</div>
 
+                    <div class="choices">
+                        <button type="button" class="choice active"
+                            onclick="cambiarColor('#242727', 'Negro', this)">
+                            Negro
+                        </button>
 
-            <div class="option-box">
+                        <button type="button" class="choice"
+                            onclick="cambiarColor('#e7e7e7', 'Blanco', this)">
+                            Blanco
+                        </button>
 
-                <div class="option-title">
-                    02 — PANEL SOLAR
+                        <button type="button" class="choice"
+                            onclick="cambiarColor('#536b48', 'Verde', this)">
+                            Verde
+                        </button>
+
+                        <button type="button" class="choice"
+                            onclick="cambiarColor('#8a6075', 'Rosado', this)">
+                            Rosado
+                        </button>
+                    </div>
                 </div>
 
-                <div class="choices">
+                <div class="result">
+                    <div>Tu diseño personalizado:</div>
+                    <strong id="resultado">
+                        Mochila Urbana · Panel Cuadrícula · Negro
+                    </strong>
+                    <br>
 
-                    <button class="choice active"
-                        onclick="cambiarPanel('cuadricula', this)">
-                        Cuadrícula
+                    <button type="button" class="reset-button"
+                        onclick="restablecerDiseño()">
+                        RESTABLECER DISEÑO
                     </button>
-
-                    <button class="choice"
-                        onclick="cambiarPanel('lineal', this)">
-                        Lineal
-                    </button>
-
-                    <button class="choice"
-                        onclick="cambiarPanel('redondo', this)">
-                        Redondo
-                    </button>
-
-                    <button class="choice"
-                        onclick="cambiarPanel('hexagonal', this)">
-                        Hexagonal
-                    </button>
-
                 </div>
 
-            </div>
+            </section>
 
-
-            <div class="option-box">
-
-                <div class="option-title">
-                    03 — COLOR
+            <!-- VISTA PREVIA DE LA MOCHILA -->
+            <section class="preview">
+                <div class="preview-label">
+                    VISTA PREVIA — ELLI
                 </div>
 
-                <div class="choices">
+                <div class="backpack model-urbana" id="backpack">
+                    <div class="solar-panel panel-cuadricula"
+                        id="solarPanel"></div>
 
-                    <button class="choice active"
-                        onclick="cambiarColor('#242727', 'Negro', this)">
-                        Negro
-                    </button>
-
-                    <button class="choice"
-                        onclick="cambiarColor('#e7e7e7', 'Blanco', this)">
-                        Blanco
-                    </button>
-
-                    <button class="choice"
-                        onclick="cambiarColor('#536b48', 'Verde', this)">
-                        Verde
-                    </button>
-
-                    <button class="choice"
-                        onclick="cambiarColor('#8a6075', 'Rosado', this)">
-                        Rosado
-                    </button>
-
+                    <div class="pocket"></div>
+                    <div class="usb"></div>
                 </div>
-
-            </div>
-
-
-            <div class="result">
-
-                Tu diseño:
-
-                <br><br>
-
-                <strong id="resultado">
-                    Mochila Urbana · Panel de Cuadrícula · Negro
-                </strong>
-
-            </div>
-
+            </section>
 
         </div>
+        
+<!-- VOLVER AL INICIO -->
+<div class="page-navigation page-navigation-center">
+    <a href="index.html" class="page-button page-back">
+        <span>←</span>
+        <span>
+            <small>VOLVER A</small>
+            <strong>Inicio de ELLI</strong>
+        </span>
+    </a>
+</div>
 
+    </main>
 
-        <!-- PREVISUALIZACIÓN -->
+    <script>
+        let modelo = "Urbana";
+        let panel = "Cuadrícula";
+        let color = "Negro";
+        let colorHex = "#242727";
 
-        <div class="preview">
+        /* CAMBIAR MODELO */
+        function cambiarModelo(nuevoModelo, boton) {
+            const mochila = document.getElementById("backpack");
 
-            <div class="preview-label">
-                VISTA PREVIA — ELLI
-            </div>
+            mochila.classList.remove(
+                "model-urbana",
+                "model-escolar",
+                "model-deportiva",
+                "model-ejecutiva"
+            );
 
-            <div class="backpack model-urbana" id="backpack">
+            mochila.classList.add("model-" + nuevoModelo);
 
-                <div
-                    class="solar-panel panel-cuadricula"
-                    id="solarPanel">
-                </div>
+            modelo = nuevoModelo.charAt(0).toUpperCase()
+                + nuevoModelo.slice(1);
 
-                <div class="pocket"></div>
+            activarBoton(boton);
+            actualizarResultado();
+        }
 
-                <div class="usb"></div>
+        /* CAMBIAR FORMA DEL PANEL SOLAR */
+        function cambiarPanel(nuevoPanel, boton) {
+            const panelSolar = document.getElementById("solarPanel");
 
-            </div>
+            panelSolar.classList.remove(
+                "panel-cuadricula",
+                "panel-lineal",
+                "panel-redondo",
+                "panel-hexagonal"
+            );
 
-        </div>
+            panelSolar.classList.add("panel-" + nuevoPanel);
 
+            const nombresPanel = {
+                cuadricula: "Cuadrícula",
+                lineal: "Lineal",
+                redondo: "Redondo",
+                hexagonal: "Hexagonal"
+            };
 
-    </div>
+            panel = nombresPanel[nuevoPanel];
 
-</main>
+            activarBoton(boton);
+            actualizarResultado();
+        }
 
+        /* CAMBIAR COLOR */
+        function cambiarColor(nuevoColor, nombreColor, boton) {
+            const mochila = document.getElementById("backpack");
 
-<script>
+            colorHex = nuevoColor;
+            color = nombreColor;
 
-let modelo = "Urbana";
-let panel = "Cuadrícula";
-let color = "Negro";
+            mochila.style.setProperty("--bag-color", nuevoColor);
+            mochila.style.backgroundColor = nuevoColor;
+            mochila.style.boxShadow =
+                "0 25px 60px " + nuevoColor + "35";
 
+            activarBoton(boton);
+            actualizarResultado();
+        }
 
-function cambiarModelo(nuevoModelo, boton) {
+        /* ACTIVAR BOTÓN SELECCIONADO */
+        function activarBoton(boton) {
+            const grupo = boton.parentElement;
+            const botones = grupo.querySelectorAll(".choice");
 
-    const mochila = document.getElementById("backpack");
+            botones.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
 
-    mochila.className = "backpack model-" + nuevoModelo;
+            boton.classList.add("active");
+        }
 
-    modelo = nuevoModelo.charAt(0).toUpperCase() + nuevoModelo.slice(1);
+        /* ACTUALIZAR RESUMEN */
+        function actualizarResultado() {
+            document.getElementById("resultado").textContent =
+                "Mochila " + modelo
+                + " · Panel " + panel
+                + " · " + color;
+        }
 
-    activarBoton(boton);
+        /* RESTABLECER TODO */
+        function restablecerDiseño() {
+            const mochila = document.getElementById("backpack");
+            const panelSolar = document.getElementById("solarPanel");
 
-    actualizarResultado();
-}
+            mochila.className = "backpack model-urbana";
+            mochila.style.setProperty("--bag-color", "#242727");
+            mochila.style.backgroundColor = "#242727";
+            mochila.style.boxShadow =
+                "0 25px 60px rgba(0,0,0,0.45)";
 
+            panelSolar.className = "solar-panel panel-cuadricula";
 
-function cambiarPanel(nuevoPanel, boton) {
+            modelo = "Urbana";
+            panel = "Cuadrícula";
+            color = "Negro";
+            colorHex = "#242727";
 
-    const panelSolar = document.getElementById("solarPanel");
+            document.querySelectorAll(".choices").forEach(
+                function (grupo) {
+                    grupo.querySelectorAll(".choice").forEach(
+                        function (boton) {
+                            boton.classList.remove("active");
+                        }
+                    );
 
-    panelSolar.className = "solar-panel panel-" + nuevoPanel;
+                    const primero = grupo.querySelector(".choice");
+                    if (primero) {
+                        primero.classList.add("active");
+                    }
+                }
+            );
 
-    panel = nuevoPanel.charAt(0).toUpperCase() + nuevoPanel.slice(1);
-
-    activarBoton(boton);
-
-    actualizarResultado();
-}
-
-
-function cambiarColor(nuevoColor, nombreColor, boton) {
-
-    const mochila = document.getElementById("backpack");
-
-    mochila.style.background = nuevoColor;
-
-    mochila.style.boxShadow =
-        "0 0 60px " + nuevoColor + "33";
-
-    color = nombreColor;
-
-    activarBoton(boton);
-
-    actualizarResultado();
-}
-
-
-function activarBoton(boton) {
-
-    const grupo = boton.parentElement;
-
-    const botones = grupo.querySelectorAll(".choice");
-
-    botones.forEach(function(btn) {
-
-        btn.classList.remove("active");
-
-    });
-
-    boton.classList.add("active");
-}
-
-
-function actualizarResultado() {
-
-    document.getElementById("resultado").textContent =
-        "Mochila " + modelo +
-        " · Panel " + panel +
-        " · " + color;
-
-}
-
-</script>
-
+            actualizarResultado();
+        }
+    </script>
 
 </body>
 </html>
+
