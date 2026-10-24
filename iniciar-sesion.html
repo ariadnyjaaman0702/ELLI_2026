@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELLI | Iniciar sesión</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --black: #080909;
+      --charcoal: #131515;
+      --lime: #ABFF00;
+      --paper: #f0f1ef;
+      --muted: #a4aaa5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 30px 18px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, #26320c 0%, transparent 55%),
+        var(--black);
+      color: var(--paper);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      padding: 38px 30px;
+      background: rgba(19, 21, 21, .95);
+      border: 1px solid #343a2a;
+      border-radius: 18px;
+      box-shadow: 0 0 45px #abff0010;
+    }
+
+    .logo {
+      color: var(--lime);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 7px;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 10px 0 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .tabs button {
+      padding: 12px 6px;
+      border: 1px solid #363a33;
+      border-radius: 8px;
+      color: var(--paper);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    .tabs button.active {
+      color: var(--black);
+      background: var(--lime);
+      border-color: var(--lime);
+      font-weight: 800;
+    }
+
+    label {
+      display: block;
+      margin: 17px 0 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #373c35;
+      border-radius: 8px;
+      outline: none;
+      background: #090b09;
+      color: white;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    input:focus { border-color: var(--lime); }
+
+    .main-button {
+      width: 100%;
+      margin-top: 23px;
+      padding: 15px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--lime);
+      color: var(--black);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .main-button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    .link-button {
+      display: block;
+      margin: 18px auto 0;
+      border: 0;
+      background: none;
+      color: var(--lime);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    #message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .back {
+      display: block;
+      margin-top: 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .back:hover { color: var(--lime); }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="logo">ELLI</div>
+    <p class="subtitle">TU ENERGÍA. TU CAMINO. TU FUTURO.</p>
+
+    <div id="formArea">
+      <div class="tabs">
+        <button type="button" id="loginTab" class="active">Iniciar sesión</button>
+        <button type="button" id="registerTab">Crear cuenta</button>
+      </div>
+
+      <form id="authForm">
+        <div id="nameGroup" class="hidden">
+          <label for="name">Nombre</label>
+          <input id="name" type="text" autocomplete="name"
+                 placeholder="Tu nombre" maxlength="80">
+        </div>
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" type="email" autocomplete="email"
+               placeholder="tucorreo@ejemplo.com" required>
+
+        <label for="password">Contraseña</label>
+        <input id="password" type="password"
+               autocomplete="current-password"
+               placeholder="Mínimo 6 caracteres" minlength="6" required>
+
+        <button class="main-button" id="submitButton" type="submit">
+          INICIAR SESIÓN
+        </button>
+      </form>
+
+      <button type="button" class="link-button" id="resetButton">
+        ¿Olvidaste tu contraseña?
+      </button>
+    </div>
+
+    <div id="successArea" class="hidden">
+      <p id="welcomeText"></p>
+      <button class="main-button" id="logoutButton" type="button">
+        CERRAR SESIÓN
+      </button>
+    </div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+
+    <a href="index.html" class="back">← Volver al inicio de ELLI</a>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      sendPasswordResetEmail,
+      updateProfile,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDuKMxJ_XyB6eYKishpLgdF_SHdHmsYtVc",
+      authDomain: "elli-10b5c.firebaseapp.com",
+      projectId: "elli-10b5c",
+      storageBucket: "elli-10b5c.firebasestorage.app",
+      messagingSenderId: "214014208124",
+      appId: "1:214014208124:web:dc22bf5ebdcc78d79d01f9",
+      measurementId: "G-H7H57487KX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("authForm");
+    const nameGroup = document.getElementById("nameGroup");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const submitButton = document.getElementById("submitButton");
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const resetButton = document.getElementById("resetButton");
+    const formArea = document.getElementById("formArea");
+    const successArea = document.getElementById("successArea");
+    const welcomeText = document.getElementById("welcomeText");
+    const logoutButton = document.getElementById("logoutButton");
+    const message = document.getElementById("message");
+
+    let mode = "login";
+    let busy = false;
+
+    function showMessage(text, success = false) {
+      message.textContent = text;
+      message.style.display = "block";
+      message.style.color = success ? "#ABFF00" : "#ffb4a9";
+      message.style.background = success ? "#abff0010" : "#ff554410";
+      message.style.border = success
+        ? "1px solid #ABFF0040"
+        : "1px solid #ff554440";
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.style.display = "none";
+    }
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      const registering = mode === "register";
+      loginTab.classList.toggle("active", !registering);
+      registerTab.classList.toggle("active", registering);
+      nameGroup.classList.toggle("hidden", !registering);
+      nameInput.required = registering;
+      passwordInput.autocomplete = registering
+        ? "new-password" : "current-password";
+      submitButton.textContent = registering
+        ? "CREAR CUENTA" : "INICIAR SESIÓN";
+      clearMessage();
+    }
+
+    function friendlyError(error) {
+      const errors = {
+        "auth/email-already-in-use": "Ese correo ya tiene una cuenta. Intenta iniciar sesión.",
+        "auth/invalid-email": "El correo electrónico no es válido.",
+        "auth/weak-password": "La contraseña debe tener al menos 6 caracteres.",
+        "auth/invalid-credential": "Correo o contraseña incorrectos.",
+        "auth/user-not-found": "No encontramos una cuenta con ese correo.",
+        "auth/wrong-password": "La contraseña es incorrecta.",
+        "auth/too-many-requests": "Hubo demasiados intentos. Espera un momento.",
+        "auth/network-request-failed": "No se pudo conectar. Revisa tu internet.",
+        "auth/operation-not-allowed": "Debes habilitar Correo electrónico/contraseña en Firebase Authentication.",
+        "auth/unauthorized-domain": "Este dominio no está autorizado en Firebase Authentication."
+      };
+      return errors[error.code] ||
+        "No se pudo completar la operación. Revisa la configuración de Firebase e inténtalo de nuevo.";
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    registerTab.addEventListener("click", () => setMode("register"));
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (busy) return;
+
+      clearMessage();
+      busy = true;
+      submitButton.disabled = true;
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      try {
+        if (mode === "register") {
+          const name = nameInput.value.trim();
+          if (!name) {
+            showMessage("Escribe tu nombre para crear la cuenta.");
+            return;
+          }
+
+          const credential = await createUserWithEmailAndPassword(
+            auth, email, password
+          );
+          await updateProfile(credential.user, { displayName: name });
+          showMessage("¡Cuenta creada! Ya puedes iniciar sesión.", true);
+          await signOut(auth);
+          setMode("login");
+          showMessage("¡Cuenta creada! Inicia sesión con tu correo y contraseña.", true);
+          passwordInput.value = "";
+        } else {
+          await signInWithEmailAndPassword(auth, email, password);
+        }
+      } catch (error) {
+        showMessage(friendlyError(error));
+      } finally {
+        busy = false;
+        submitButton.disabled = false;
+      }
+    });
+
+    resetButton.addEventListener("click", async () => {
+      clearMessage();
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showMessage("Escribe tu correo electrónico primero.");
+        emailInput.focus();
+        return;
+      }
+
+      try {
+        await sendPasswordResetEmail(auth, email);
+        showMessage("Si ese correo está registrado, recibirás instrucciones para restablecer la contraseña.", true);
+      } catch (error) {
+        showMessage(friendlyError(error));
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        formArea.classList.add("hidden");
+        successArea.classList.remove("hidden");
+        welcomeText.textContent =
+          "¡Hola, " + (user.displayName || user.email) +
+          "! Has iniciado sesión en ELLI.";
+        clearMessage();
+      } else {
+        formArea.classList.remove("hidden");
+        successArea.classList.add("hidden");
+      }
+    });
+
+    logoutButton.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        clearMessage();
+        setMode("login");
+        showMessage("Has cerrado sesión.", true);
+      } catch (error) {
+        showMessage(friendlyError(error));
+      }
+    });
+  </script>
+</body>
+</html>
