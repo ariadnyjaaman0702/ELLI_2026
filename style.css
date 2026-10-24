@@ -3228,3 +3228,32 @@ header.navbar {
         transition: none !important;
     }
 }
+/* ELLI — AJUSTE DEFINITIVO DE LA MOCHILA */
+
+.preview {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 20px 10px !important;
+}
+
+/* Centrar el dibujo de la mochila */
+.preview .backpack {
+    position: relative !important;
+    top: 25px !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 0 auto !important;
+    flex-shrink: 0 !important;
+    transform: scale(0.65) !important;
+    transform-origin: top center !important;
+}
+
+/* Evitar que los elementos internos desplacen la mochila */
+.preview .backpack * {
+    box-sizing: border-box;
+}
