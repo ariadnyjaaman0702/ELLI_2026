@@ -1,9 +1,10 @@
-
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080909">
     <title>Personaliza tu ELLI</title>
     <link rel="stylesheet" href="style.css">
 
@@ -25,16 +26,16 @@
 
         .customizer {
             min-height: 100vh;
-            padding: 130px 7% 80px;
+            padding: 125px 5% 70px;
             background:
                 radial-gradient(circle at 50% 25%,
-                rgba(171, 255, 0, 0.09), transparent 35%),
+                rgba(171, 255, 0, .09), transparent 38%),
                 #080909;
         }
 
         .customizer-header {
             text-align: center;
-            margin: 0 auto 55px;
+            margin: 0 auto 45px;
             max-width: 850px;
         }
 
@@ -42,14 +43,15 @@
             color: #abff00;
             letter-spacing: 3px;
             font-size: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .customizer-header h1 {
             color: #fff;
-            font-size: clamp(40px, 7vw, 82px);
+            font-size: clamp(38px, 7vw, 78px);
             margin: 0;
             letter-spacing: -3px;
+            line-height: 1.1;
         }
 
         .customizer-header p {
@@ -61,48 +63,51 @@
         }
 
         .customizer-grid {
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1150px;
             margin: auto;
             display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 35px;
-            align-items: stretch;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: 28px;
+            align-items: start;
         }
 
         .options {
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         .option-box {
+            min-width: 0;
             border: 1px solid #292d2d;
             background: #111313;
-            padding: 24px;
+            padding: 22px;
         }
 
         .option-title {
             color: #fff;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             letter-spacing: 1.5px;
         }
 
         .choices {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 9px;
         }
 
         .choice {
             background: #1b1e1e;
             border: 1px solid #363b3b;
             color: #c5c9c8;
-            padding: 12px 14px;
+            padding: 11px 13px;
             cursor: pointer;
-            transition: 0.25s;
             font-size: 12px;
+            transition: background .2s, color .2s, border-color .2s;
         }
 
         .choice:hover,
@@ -117,86 +122,116 @@
             border-color: #abff00;
         }
 
+        /* VISTA PREVIA: CONTENEDOR */
         .preview {
             min-width: 0;
-            min-height: 650px;
+            width: 100%;
+            height: 570px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #292d2d;
-            background:
-                linear-gradient(rgba(255,255,255,0.025) 1px,
-                transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px,
-                transparent 1px);
-            background-size: 35px 35px;
             position: relative;
             overflow: hidden;
+            isolation: isolate;
+            padding: 65px 25px;
+
+            border: 1px solid #292d2d;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(171, 255, 0, .07),
+                    transparent 65%
+                ),
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: auto, 35px 35px, 35px 35px;
         }
 
         .preview-label {
             position: absolute;
-            top: 22px;
-            left: 22px;
+            top: 20px;
+            left: 20px;
             color: #abff00;
             font-size: 10px;
             letter-spacing: 2px;
-            z-index: 4;
+            z-index: 5;
         }
 
         .preview::after {
             content: "ELLI";
             position: absolute;
-            bottom: 12px;
-            right: 20px;
-            font-size: 55px;
+            bottom: 10px;
+            right: 15px;
+            font-size: clamp(35px, 5vw, 55px);
             font-weight: 900;
             letter-spacing: -4px;
-            color: rgba(255,255,255,0.035);
+            color: rgba(255,255,255,.04);
             pointer-events: none;
+            z-index: 0;
         }
 
-        .backpack {
+        /* MOCHILA */
+        .preview .backpack {
             --bag-color: #242727;
+
             position: relative;
-            width: 270px;
-            height: 350px;
-            flex-shrink: 0;
-            background: var(--bag-color);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+            display: block;
+            flex: 0 0 auto;
+
+            width: 250px;
+            height: 320px;
+            max-width: none;
+            margin: 0;
+
+            background-color: var(--bag-color);
+            box-shadow: 0 22px 45px rgba(0,0,0,.4);
+
+            transform: scale(.85);
+            transform-origin: center center;
+
             transition:
-                width 0.35s ease,
-                height 0.35s ease,
-                border-radius 0.35s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
-            z-index: 1;
+                width .3s ease,
+                height .3s ease,
+                border-radius .3s ease,
+                background-color .25s ease,
+                box-shadow .25s ease;
+
+            z-index: 2;
         }
 
-        .backpack::before {
+        .preview .backpack::before {
             content: "";
             position: absolute;
             width: 35%;
-            height: 42px;
-            border: 9px solid var(--bag-color);
+            height: 35px;
+            border: 8px solid var(--bag-color);
             border-bottom: none;
-            border-radius: 35px 35px 0 0;
-            top: -25px;
+            border-radius: 30px 30px 0 0;
+            top: -23px;
             left: 50%;
             transform: translateX(-50%);
-            transition: border-color 0.25s;
+            transition: border-color .25s;
         }
 
-        .backpack::after {
+        .preview .backpack::after {
             content: "";
             position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(255,255,255,0.09);
+            inset: 10px;
+            border: 1px solid rgba(255,255,255,.1);
             border-radius: inherit;
             pointer-events: none;
         }
 
-        .solar-panel {
+        .preview .solar-panel {
             position: absolute;
             width: 54%;
             height: 32%;
@@ -207,118 +242,116 @@
             border-radius: 3px;
             overflow: hidden;
             transition:
-                width 0.35s,
-                height 0.35s,
-                top 0.35s,
-                left 0.35s,
-                border-radius 0.35s;
+                width .3s,
+                height .3s,
+                top .3s,
+                left .3s,
+                border-radius .3s;
             z-index: 2;
         }
 
-        .solar-panel::after {
+        .preview .solar-panel::after {
             content: "";
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(90deg, transparent 31%,
-                #657176 32%, #657176 34%, transparent 35%,
-                transparent 65%, #657176 66%, #657176 68%,
-                transparent 69%),
-                linear-gradient(0deg, transparent 31%,
-                #657176 32%, #657176 34%, transparent 35%,
-                transparent 65%, #657176 66%, #657176 68%,
-                transparent 69%);
+                linear-gradient(
+                    90deg,
+                    transparent 31%,
+                    #657176 32%,
+                    #657176 34%,
+                    transparent 35%,
+                    transparent 65%,
+                    #657176 66%,
+                    #657176 68%,
+                    transparent 69%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 31%,
+                    #657176 32%,
+                    #657176 34%,
+                    transparent 35%,
+                    transparent 65%,
+                    #657176 66%,
+                    #657176 68%,
+                    transparent 69%
+                );
             pointer-events: none;
         }
 
-        .pocket {
+        .preview .pocket {
             position: absolute;
             width: 64%;
             height: 21%;
             bottom: 10%;
             left: 18%;
-            border: 3px solid rgba(0,0,0,0.3);
-            background: rgba(0,0,0,0.10);
+            border: 3px solid rgba(0,0,0,.3);
+            background: rgba(0,0,0,.1);
             border-radius: 10px;
             transition:
-                width 0.35s,
-                height 0.35s,
-                bottom 0.35s,
-                left 0.35s,
-                border-radius 0.35s;
+                width .3s,
+                height .3s,
+                bottom .3s,
+                left .3s,
+                border-radius .3s;
             z-index: 2;
         }
 
-        .pocket::before {
+        .preview .pocket::before {
             content: "";
             position: absolute;
             top: 8px;
             left: 15%;
             width: 70%;
             height: 3px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,.18);
         }
 
-        .usb {
+        .preview .usb {
             position: absolute;
-            width: 30px;
-            height: 18px;
+            width: 25px;
+            height: 16px;
             background: #abff00;
-            right: -15px;
+            right: -12px;
             bottom: 25%;
             border: 3px solid #080909;
             border-radius: 4px;
-            box-shadow: 0 0 14px rgba(171,255,0,0.35);
+            box-shadow: 0 0 12px rgba(171,255,0,.3);
             z-index: 3;
         }
 
-        .usb::after {
+        .preview .usb::after {
             content: "";
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             background: #080909;
             top: 3px;
-            left: 9px;
+            left: 7px;
         }
 
-        /* MODELO URBANO */
-        .model-urbana {
-            width: 270px;
-            height: 350px;
-            border-radius: 45px 45px 35px 35px;
+        /* MODELOS */
+        .preview .model-urbana {
+            width: 250px;
+            height: 320px;
+            border-radius: 42px 42px 32px 32px;
         }
 
-        .model-urbana .solar-panel {
-            width: 54%;
-            height: 32%;
-            top: 20%;
-            left: 23%;
+        .preview .model-escolar {
+            width: 255px;
+            height: 340px;
+            border-radius: 24px 24px 12px 12px;
         }
 
-        .model-urbana .pocket {
-            width: 64%;
-            height: 21%;
-            left: 18%;
-            bottom: 10%;
-            border-radius: 10px;
-        }
-
-        /* MODELO ESCOLAR */
-        .model-escolar {
-            width: 285px;
-            height: 375px;
-            border-radius: 25px 25px 12px 12px;
-        }
-
-        .model-escolar .solar-panel {
+        .preview .model-escolar .solar-panel {
             width: 60%;
             height: 27%;
             top: 17%;
             left: 20%;
         }
 
-        .model-escolar .pocket {
+        .preview .model-escolar .pocket {
             width: 76%;
             height: 25%;
             left: 12%;
@@ -326,18 +359,17 @@
             border-radius: 5px;
         }
 
-        .model-escolar .usb {
+        .preview .model-escolar .usb {
             bottom: 28%;
         }
 
-        /* MODELO DEPORTIVO */
-        .model-deportiva {
-            width: 300px;
-            height: 305px;
-            border-radius: 70px 70px 28px 28px;
+        .preview .model-deportiva {
+            width: 260px;
+            height: 275px;
+            border-radius: 65px 65px 25px 25px;
         }
 
-        .model-deportiva .solar-panel {
+        .preview .model-deportiva .solar-panel {
             width: 49%;
             height: 29%;
             top: 22%;
@@ -345,7 +377,7 @@
             border-radius: 20px;
         }
 
-        .model-deportiva .pocket {
+        .preview .model-deportiva .pocket {
             width: 70%;
             height: 20%;
             left: 15%;
@@ -353,18 +385,17 @@
             border-radius: 25px;
         }
 
-        .model-deportiva .usb {
+        .preview .model-deportiva .usb {
             bottom: 24%;
         }
 
-        /* MODELO EJECUTIVO */
-        .model-ejecutiva {
-            width: 265px;
-            height: 350px;
+        .preview .model-ejecutiva {
+            width: 245px;
+            height: 320px;
             border-radius: 12px;
         }
 
-        .model-ejecutiva .solar-panel {
+        .preview .model-ejecutiva .solar-panel {
             width: 66%;
             height: 25%;
             top: 18%;
@@ -372,7 +403,7 @@
             border-radius: 2px;
         }
 
-        .model-ejecutiva .pocket {
+        .preview .model-ejecutiva .pocket {
             width: 66%;
             height: 18%;
             left: 17%;
@@ -380,16 +411,16 @@
             border-radius: 3px;
         }
 
-        .model-ejecutiva .usb {
+        .preview .model-ejecutiva .usb {
             bottom: 25%;
         }
 
-        /* DISEÑOS DEL PANEL SOLAR */
-        .panel-cuadricula {
+        /* PANELES SOLARES */
+        .preview .panel-cuadricula {
             border-radius: 2px;
         }
 
-        .panel-lineal::after {
+        .preview .panel-lineal::after {
             background: repeating-linear-gradient(
                 90deg,
                 transparent 0,
@@ -400,36 +431,67 @@
             );
         }
 
-        .panel-redondo {
+        .preview .panel-redondo {
             border-radius: 35px;
         }
 
-        .panel-redondo::after {
+        .preview .panel-redondo::after {
             background:
-                radial-gradient(circle, transparent 48%,
-                #657176 50%, #657176 53%, transparent 55%),
-                linear-gradient(90deg, transparent 48%,
-                #657176 49%, #657176 51%, transparent 52%),
-                linear-gradient(0deg, transparent 48%,
-                #657176 49%, #657176 51%, transparent 52%);
+                radial-gradient(
+                    circle,
+                    transparent 48%,
+                    #657176 50%,
+                    #657176 53%,
+                    transparent 55%
+                ),
+                linear-gradient(
+                    90deg,
+                    transparent 48%,
+                    #657176 49%,
+                    #657176 51%,
+                    transparent 52%
+                ),
+                linear-gradient(
+                    0deg,
+                    transparent 48%,
+                    #657176 49%,
+                    #657176 51%,
+                    transparent 52%
+                );
         }
 
-        .panel-hexagonal {
+        .preview .panel-hexagonal {
             clip-path: polygon(
-                15% 0, 85% 0, 100% 50%,
-                85% 100%, 15% 100%, 0 50%
+                15% 0,
+                85% 0,
+                100% 50%,
+                85% 100%,
+                15% 100%,
+                0 50%
             );
             border-radius: 0;
         }
 
-        .panel-hexagonal::after {
+        .preview .panel-hexagonal::after {
             background:
-                repeating-linear-gradient(60deg, transparent 0,
-                transparent 25%, #657176 26%, #657176 28%,
-                transparent 29%, transparent 50%),
-                repeating-linear-gradient(-60deg, transparent 0,
-                transparent 25%, #657176 26%, #657176 28%,
-                transparent 29%, transparent 50%);
+                repeating-linear-gradient(
+                    60deg,
+                    transparent 0,
+                    transparent 25%,
+                    #657176 26%,
+                    #657176 28%,
+                    transparent 29%,
+                    transparent 50%
+                ),
+                repeating-linear-gradient(
+                    -60deg,
+                    transparent 0,
+                    transparent 25%,
+                    #657176 26%,
+                    #657176 28%,
+                    transparent 29%,
+                    transparent 50%
+                );
         }
 
         .result {
@@ -439,6 +501,7 @@
             color: #9fa4a4;
             font-size: 13px;
             line-height: 1.8;
+            overflow-wrap: anywhere;
         }
 
         .result strong {
@@ -455,7 +518,7 @@
             cursor: pointer;
             font-size: 11px;
             letter-spacing: 1px;
-            transition: 0.25s;
+            transition: .25s;
         }
 
         .reset-button:hover,
@@ -465,8 +528,8 @@
         }
 
         .customizer-bottom {
-            max-width: 1200px;
-            margin: 35px auto 0;
+            max-width: 1150px;
+            margin: 30px auto 0;
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
@@ -479,7 +542,7 @@
             color: #abff00;
             text-decoration: none;
             font-size: 12px;
-            transition: 0.25s;
+            transition: .25s;
         }
 
         .customizer-bottom a:hover {
@@ -487,57 +550,71 @@
             color: #080909;
         }
 
-        @media (max-width: 800px) {
-            .customizer {
-                padding: 110px 5% 50px;
-            }
-
+        /* TABLET */
+        @media (max-width: 900px) {
             .customizer-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                max-width: 650px;
             }
 
             .preview {
-                min-height: 520px;
                 grid-row: 1;
+                height: 470px;
+                min-height: 0;
+            }
+
+            .preview .backpack {
+                transform: scale(.78);
             }
 
             .customizer-header {
                 margin-bottom: 30px;
             }
+        }
+
+        /* CELULAR */
+        @media (max-width: 480px) {
+            .customizer {
+                padding: 105px 16px 45px;
+            }
 
             .customizer-header h1 {
+                font-size: clamp(36px, 11vw, 52px);
                 letter-spacing: -2px;
             }
 
-            .option-box {
-                padding: 20px;
+            .customizer-header p {
+                font-size: 13px;
+                line-height: 1.7;
             }
-        }
 
-        @media (max-width: 420px) {
+            .customizer-grid {
+                gap: 20px;
+            }
+
             .preview {
-                min-height: 460px;
+                height: 390px;
+                padding: 45px 10px;
             }
 
-            .model-urbana {
-                transform: scale(0.88);
+            .preview .backpack {
+                transform: scale(.66);
             }
 
-            .model-escolar {
-                transform: scale(0.82);
+            .preview-label {
+                top: 15px;
+                left: 13px;
+                font-size: 9px;
+                letter-spacing: 1.5px;
             }
 
-            .model-deportiva {
-                transform: scale(0.85);
-            }
-
-            .model-ejecutiva {
-                transform: scale(0.9);
+            .option-box {
+                padding: 17px;
             }
 
             .choice {
                 padding: 10px 11px;
+                font-size: 11px;
             }
         }
 
@@ -545,8 +622,8 @@
             *,
             *::before,
             *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
             }
         }
     </style>
@@ -554,7 +631,6 @@
 
 <body>
 
-    <!-- MENÚ ELLI -->
     <header class="navbar">
         <a href="index.html" class="logo">ELLI<span>.</span></a>
 
@@ -564,8 +640,7 @@
             type="button"
             aria-label="Abrir menú"
             aria-expanded="false"
-            aria-controls="menuLinks"
-        >
+            aria-controls="menuLinks">
             <span></span>
             <span></span>
             <span></span>
@@ -583,7 +658,6 @@
         </nav>
     </header>
 
-    <!-- PARTÍCULAS DEL FONDO -->
     <div class="elli-particles" aria-hidden="true">
         <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span>
         <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span>
@@ -601,9 +675,7 @@
 
         <section class="customizer-header">
             <div class="label">ELLI LAB — PERSONALIZACIÓN</div>
-
             <h1>Crea tu ELLI</h1>
-
             <p>
                 Diseña tu mochila inteligente escogiendo el modelo,
                 la forma del panel solar y el color que más te guste.
@@ -612,12 +684,10 @@
 
         <div class="customizer-grid">
 
-            <!-- OPCIONES DE PERSONALIZACIÓN -->
             <section class="options" aria-label="Opciones de diseño">
 
                 <div class="option-box">
                     <div class="option-title">01 — MODELO</div>
-
                     <div class="choices">
                         <button type="button" class="choice active"
                             aria-pressed="true"
@@ -639,7 +709,6 @@
 
                 <div class="option-box">
                     <div class="option-title">02 — PANEL SOLAR</div>
-
                     <div class="choices">
                         <button type="button" class="choice active"
                             aria-pressed="true"
@@ -661,7 +730,6 @@
 
                 <div class="option-box">
                     <div class="option-title">03 — COLOR</div>
-
                     <div class="choices">
                         <button type="button" class="choice active"
                             aria-pressed="true"
@@ -683,13 +751,10 @@
 
                 <div class="result" aria-live="polite">
                     <div>Tu diseño personalizado:</div>
-
                     <strong id="resultado">
                         Mochila Urbana · Panel Cuadrícula · Negro
                     </strong>
-
                     <br>
-
                     <button type="button" class="reset-button"
                         onclick="restablecerDiseño()">
                         RESTABLECER DISEÑO
@@ -698,14 +763,11 @@
 
             </section>
 
-            <!-- VISTA PREVIA -->
             <section class="preview" aria-label="Vista previa de la mochila">
                 <div class="preview-label">VISTA PREVIA — ELLI</div>
 
                 <div class="backpack model-urbana" id="backpack">
-                    <div class="solar-panel panel-cuadricula"
-                        id="solarPanel"></div>
-
+                    <div class="solar-panel panel-cuadricula" id="solarPanel"></div>
                     <div class="pocket"></div>
                     <div class="usb"></div>
                 </div>
@@ -713,10 +775,13 @@
 
         </div>
 
-       
+        <div class="customizer-bottom">
+            <a href="servicios.html">← Volver a servicios</a>
+            <a href="contactanos.html">Continuar a contacto →</a>
+        </div>
+
     </main>
 
-    <!-- FUNCIONAMIENTO DEL MENÚ -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const boton = document.getElementById("menuToggle");
@@ -750,24 +815,17 @@
             });
 
             document.addEventListener("click", function (evento) {
-                if (
-                    !boton.contains(evento.target) &&
-                    !menu.contains(evento.target)
-                ) {
+                if (!boton.contains(evento.target) &&
+                    !menu.contains(evento.target)) {
                     cerrarMenu();
                 }
             });
 
             document.addEventListener("keydown", function (evento) {
-                if (evento.key === "Escape") {
-                    cerrarMenu();
-                }
+                if (evento.key === "Escape") cerrarMenu();
             });
         });
-    </script>
 
-    <!-- FUNCIONES DE PERSONALIZACIÓN -->
-    <script>
         let modelo = "Urbana";
         let panel = "Cuadrícula";
         let color = "Negro";
@@ -821,8 +879,6 @@
 
             mochila.style.setProperty("--bag-color", nuevoColor);
             mochila.style.backgroundColor = nuevoColor;
-            mochila.style.boxShadow =
-                "0 25px 60px rgba(0, 0, 0, 0.35)";
 
             color = nombreColor;
 
@@ -854,8 +910,7 @@
             mochila.className = "backpack model-urbana";
             mochila.style.setProperty("--bag-color", "#242727");
             mochila.style.backgroundColor = "#242727";
-            mochila.style.boxShadow =
-                "0 25px 60px rgba(0, 0, 0, 0.45)";
+            mochila.style.boxShadow = "0 22px 45px rgba(0,0,0,.4)";
 
             panelSolar.className = "solar-panel panel-cuadricula";
 
@@ -883,3 +938,4 @@
 
 </body>
 </html>
+```
