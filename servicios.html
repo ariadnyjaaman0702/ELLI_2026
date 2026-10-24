@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | ELLI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .services-page {
+            min-height: 100vh;
+            padding: 100px 8% 70px;
+            color: #f0f1ef;
+        }
+
+        .services-intro {
+            max-width: 750px;
+            margin-bottom: 55px;
+        }
+
+        .services-label {
+            color: #ABFF00;
+            letter-spacing: 4px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .services-intro h1 {
+            font-size: clamp(38px, 7vw, 75px);
+            margin: 18px 0;
+            line-height: 1.05;
+        }
+
+        .services-intro h1 span {
+            color: #ABFF00;
+        }
+
+        .services-intro p {
+            color: #b9bdbc;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 620px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .service-item {
+            border: 1px solid #303434;
+            background: #101212;
+            padding: 30px;
+            min-height: 250px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            border-color: #ABFF00;
+            transform: translateY(-6px);
+        }
+
+        .service-number {
+            color: #ABFF00;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .service-item h2 {
+            font-size: 23px;
+            margin: 25px 0 14px;
+        }
+
+        .service-item p {
+            color: #b9bdbc;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .services-bottom {
+            margin-top: 55px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .services-bottom a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 14px 22px;
+            border: 1px solid #ABFF00;
+            color: #ABFF00;
+            transition: 0.3s;
+        }
+
+        .services-bottom a:hover {
+            background: #ABFF00;
+            color: #080909;
+        }
+
+        @media (max-width: 600px) {
+            .services-page {
+                padding: 90px 6% 45px;
+            }
+
+            .service-item {
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .service-item,
+            .services-bottom a {
+                transition: none;
+            }
+
+            .service-item:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menuLinks"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Nuestro equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html" aria-current="page">Servicios</a>
+            <a href="personaliza.html">Personaliza tu mochila</a>
+            <a href="contactanos.html">Contáctanos</a>
+        </nav>
+    </header>
+
+    <!-- PARTÍCULAS DEL FONDO -->
+    <div class="elli-particles" aria-hidden="true">
+        <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span>
+        <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span>
+        <span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s;"></span>
+        <span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s;"></span>
+        <span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s;"></span>
+        <span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s;"></span>
+        <span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s;"></span>
+        <span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s;"></span>
+        <span style="--x:12%;--y:40%;--size:2px;--duration:13s;--delay:-9s;"></span>
+        <span style="--x:88%;--y:35%;--size:3px;--duration:10s;--delay:-4s;"></span>
+    </div>
+
+    <main class="services-page">
+
+        <section class="services-intro">
+            <span class="services-label">SOLUCIONES ELLI</span>
+
+            <h1>
+                Más energía.<br>
+                <span>Más posibilidades.</span>
+            </h1>
+
+            <p>
+                En ELLI creamos propuestas que combinan tecnología,
+                comodidad y energía solar para acompañarte en tus
+                actividades diarias.
+            </p>
+        </section>
+
+        <section class="services-grid" aria-label="Servicios de ELLI">
+
+            <article class="service-item">
+                <span class="service-number">01 / PRODUCTO</span>
+                <h2>Mochilas inteligentes</h2>
+                <p>
+                    Mochilas diseñadas para transportar tus objetos
+                    personales y ofrecer soluciones tecnológicas
+                    para acompañarte durante el día.
+                </p>
+            </article>
+
+            <article class="service-item">
+                <span class="service-number">02 / ENERGÍA</span>
+                <h2>Carga solar portátil</h2>
+                <p>
+                    Una propuesta que aprovecha la energía del sol
+                    para ayudar a cargar dispositivos compatibles,
+                    según las características del modelo.
+                </p>
+            </article>
+
+            <article class="service-item">
+                <span class="service-number">03 / DISEÑO</span>
+                <h2>Personalización</h2>
+                <p>
+                    Explora diferentes estilos y modelos de mochilas
+                    para encontrar una opción que se adapte a tus
+                    gustos y necesidades.
+                </p>
+                <a href="personaliza.html"
+                   style="display:inline-block; margin-top:18px; color:#ABFF00; text-decoration:none;">
+                    Explorar modelos →
+                </a>
+            </article>
+
+        </section>
+
+        <div class="services-bottom">
+            <a href="equipo.html">← Conoce nuestro equipo</a>
+            <a href="personaliza.html">Personaliza tu mochila →</a>
+        </div>
+
+    </main>
+
+    <footer class="home-footer">
+        <a href="index.html" class="footer-logo">ELLI<span>.</span></a>
+        <p>Tecnología para acompañarte a donde vayas.</p>
+        <span>© 2026 ELLI · PROYECTO EMPRESARIAL</span>
+    </footer>
+
+    <!-- MENÚ DESPLEGABLE -->
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const menuLinks = document.getElementById("menuLinks");
+
+        if (menuToggle && menuLinks) {
+            function cerrarMenu() {
+                menuLinks.classList.remove("open");
+                menuToggle.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Abrir menú");
+            }
+
+            menuToggle.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const abierto = menuLinks.classList.toggle("open");
+
+                menuToggle.classList.toggle("active", abierto);
+                menuToggle.setAttribute("aria-expanded", String(abierto));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    abierto ? "Cerrar menú" : "Abrir menú"
+                );
+            });
+
+            menuLinks.addEventListener("click", function (event) {
+                if (event.target.closest("a")) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (
+                    !menuToggle.contains(event.target) &&
+                    !menuLinks.contains(event.target)
+                ) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    cerrarMenu();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
