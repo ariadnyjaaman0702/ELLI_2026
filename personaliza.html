@@ -1,14 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personaliza tu ELLI</title>
-
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* CONFIGURACIÓN GENERAL */
         * {
             box-sizing: border-box;
         }
@@ -24,16 +23,12 @@
             font-family: inherit;
         }
 
-        /* PÁGINA DE PERSONALIZACIÓN */
         .customizer {
             min-height: 100vh;
             padding: 130px 7% 80px;
             background:
-                radial-gradient(
-                    circle at 50% 25%,
-                    rgba(171, 255, 0, 0.09),
-                    transparent 35%
-                ),
+                radial-gradient(circle at 50% 25%,
+                rgba(171, 255, 0, 0.09), transparent 35%),
                 #080909;
         }
 
@@ -51,7 +46,7 @@
         }
 
         .customizer-header h1 {
-            color: #ffffff;
+            color: #fff;
             font-size: clamp(40px, 7vw, 82px);
             margin: 0;
             letter-spacing: -3px;
@@ -74,7 +69,6 @@
             align-items: stretch;
         }
 
-        /* OPCIONES */
         .options {
             display: flex;
             flex-direction: column;
@@ -88,7 +82,7 @@
         }
 
         .option-title {
-            color: #ffffff;
+            color: #fff;
             font-size: 13px;
             font-weight: 700;
             margin-bottom: 18px;
@@ -111,9 +105,10 @@
             font-size: 12px;
         }
 
-        .choice:hover {
+        .choice:hover,
+        .choice:focus-visible {
             border-color: #abff00;
-            color: #ffffff;
+            color: #fff;
         }
 
         .choice.active {
@@ -122,23 +117,18 @@
             border-color: #abff00;
         }
 
-        /* PREVISUALIZACIÓN */
         .preview {
+            min-width: 0;
             min-height: 650px;
             display: flex;
             justify-content: center;
             align-items: center;
             border: 1px solid #292d2d;
             background:
-                linear-gradient(
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,0.025) 1px,
-                    transparent 1px
-                );
+                linear-gradient(rgba(255,255,255,0.025) 1px,
+                transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px,
+                transparent 1px);
             background-size: 35px 35px;
             position: relative;
             overflow: hidden;
@@ -151,6 +141,7 @@
             color: #abff00;
             font-size: 10px;
             letter-spacing: 2px;
+            z-index: 4;
         }
 
         .preview::after {
@@ -165,10 +156,8 @@
             pointer-events: none;
         }
 
-        /* MOCHILA BASE */
         .backpack {
             --bag-color: #242727;
-
             position: relative;
             width: 270px;
             height: 350px;
@@ -184,7 +173,6 @@
             z-index: 1;
         }
 
-        /* ASA SUPERIOR */
         .backpack::before {
             content: "";
             position: absolute;
@@ -199,7 +187,6 @@
             transition: border-color 0.25s;
         }
 
-        /* COSTURAS DECORATIVAS */
         .backpack::after {
             content: "";
             position: absolute;
@@ -209,7 +196,6 @@
             pointer-events: none;
         }
 
-        /* PANEL SOLAR */
         .solar-panel {
             position: absolute;
             width: 54%;
@@ -234,32 +220,17 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(
-                    90deg,
-                    transparent 31%,
-                    #657176 32%,
-                    #657176 34%,
-                    transparent 35%,
-                    transparent 65%,
-                    #657176 66%,
-                    #657176 68%,
-                    transparent 69%
-                ),
-                linear-gradient(
-                    0deg,
-                    transparent 31%,
-                    #657176 32%,
-                    #657176 34%,
-                    transparent 35%,
-                    transparent 65%,
-                    #657176 66%,
-                    #657176 68%,
-                    transparent 69%
-                );
+                linear-gradient(90deg, transparent 31%,
+                #657176 32%, #657176 34%, transparent 35%,
+                transparent 65%, #657176 66%, #657176 68%,
+                transparent 69%),
+                linear-gradient(0deg, transparent 31%,
+                #657176 32%, #657176 34%, transparent 35%,
+                transparent 65%, #657176 66%, #657176 68%,
+                transparent 69%);
             pointer-events: none;
         }
 
-        /* BOLSILLO DELANTERO */
         .pocket {
             position: absolute;
             width: 64%;
@@ -288,7 +259,6 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* CONEXIÓN USB */
         .usb {
             position: absolute;
             width: 30px;
@@ -312,7 +282,7 @@
             left: 9px;
         }
 
-        /* MODELO 1: URBANA */
+        /* MODELO URBANO */
         .model-urbana {
             width: 270px;
             height: 350px;
@@ -334,7 +304,7 @@
             border-radius: 10px;
         }
 
-        /* MODELO 2: ESCOLAR */
+        /* MODELO ESCOLAR */
         .model-escolar {
             width: 285px;
             height: 375px;
@@ -360,7 +330,7 @@
             bottom: 28%;
         }
 
-        /* MODELO 3: DEPORTIVA */
+        /* MODELO DEPORTIVO */
         .model-deportiva {
             width: 300px;
             height: 305px;
@@ -387,7 +357,7 @@
             bottom: 24%;
         }
 
-        /* MODELO 4: EJECUTIVA */
+        /* MODELO EJECUTIVO */
         .model-ejecutiva {
             width: 265px;
             height: 350px;
@@ -414,21 +384,20 @@
             bottom: 25%;
         }
 
-        /* FORMAS DEL PANEL SOLAR */
+        /* DISEÑOS DEL PANEL SOLAR */
         .panel-cuadricula {
             border-radius: 2px;
         }
 
         .panel-lineal::after {
-            background:
-                repeating-linear-gradient(
-                    90deg,
-                    transparent 0,
-                    transparent 17%,
-                    #657176 18%,
-                    #657176 20%,
-                    transparent 21%
-                );
+            background: repeating-linear-gradient(
+                90deg,
+                transparent 0,
+                transparent 17%,
+                #657176 18%,
+                #657176 20%,
+                transparent 21%
+            );
         }
 
         .panel-redondo {
@@ -437,64 +406,32 @@
 
         .panel-redondo::after {
             background:
-                radial-gradient(
-                    circle,
-                    transparent 48%,
-                    #657176 50%,
-                    #657176 53%,
-                    transparent 55%
-                ),
-                linear-gradient(
-                    90deg,
-                    transparent 48%,
-                    #657176 49%,
-                    #657176 51%,
-                    transparent 52%
-                ),
-                linear-gradient(
-                    0deg,
-                    transparent 48%,
-                    #657176 49%,
-                    #657176 51%,
-                    transparent 52%
-                );
+                radial-gradient(circle, transparent 48%,
+                #657176 50%, #657176 53%, transparent 55%),
+                linear-gradient(90deg, transparent 48%,
+                #657176 49%, #657176 51%, transparent 52%),
+                linear-gradient(0deg, transparent 48%,
+                #657176 49%, #657176 51%, transparent 52%);
         }
 
         .panel-hexagonal {
             clip-path: polygon(
-                15% 0,
-                85% 0,
-                100% 50%,
-                85% 100%,
-                15% 100%,
-                0 50%
+                15% 0, 85% 0, 100% 50%,
+                85% 100%, 15% 100%, 0 50%
             );
             border-radius: 0;
         }
 
         .panel-hexagonal::after {
             background:
-                repeating-linear-gradient(
-                    60deg,
-                    transparent 0,
-                    transparent 25%,
-                    #657176 26%,
-                    #657176 28%,
-                    transparent 29%,
-                    transparent 50%
-                ),
-                repeating-linear-gradient(
-                    -60deg,
-                    transparent 0,
-                    transparent 25%,
-                    #657176 26%,
-                    #657176 28%,
-                    transparent 29%,
-                    transparent 50%
-                );
+                repeating-linear-gradient(60deg, transparent 0,
+                transparent 25%, #657176 26%, #657176 28%,
+                transparent 29%, transparent 50%),
+                repeating-linear-gradient(-60deg, transparent 0,
+                transparent 25%, #657176 26%, #657176 28%,
+                transparent 29%, transparent 50%);
         }
 
-        /* RESUMEN DEL DISEÑO */
         .result {
             margin-top: 5px;
             border-top: 1px solid #292d2d;
@@ -521,12 +458,35 @@
             transition: 0.25s;
         }
 
-        .reset-button:hover {
+        .reset-button:hover,
+        .reset-button:focus-visible {
             background: #abff00;
             color: #080909;
         }
 
-        /* AJUSTES PARA CELULARES */
+        .customizer-bottom {
+            max-width: 1200px;
+            margin: 35px auto 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .customizer-bottom a {
+            display: inline-block;
+            padding: 13px 18px;
+            border: 1px solid #abff00;
+            color: #abff00;
+            text-decoration: none;
+            font-size: 12px;
+            transition: 0.25s;
+        }
+
+        .customizer-bottom a:hover {
+            background: #abff00;
+            color: #080909;
+        }
+
         @media (max-width: 800px) {
             .customizer {
                 padding: 110px 5% 50px;
@@ -580,32 +540,70 @@
                 padding: 10px 11px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- MENÚ -->
-    <header class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="logo">ELL<span>I</span></a>
+    <!-- MENÚ ELLI -->
+    <header class="navbar">
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
 
-            <nav class="nav-links">
-                <a href="historia.html">HISTORIA</a>
-                <a href="equipo.html">EQUIPO</a>
-                <a href="mision.html">MISIÓN</a>
-                <a href="vision.html">VISIÓN</a>
-                <a href="personaliza.html">PERSONALIZA</a>
-            </nav>
-        </div>
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menuLinks"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Nuestro equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="personaliza.html" aria-current="page">Personaliza tu mochila</a>
+            <a href="contactanos.html">Contáctanos</a>
+        </nav>
     </header>
+
+    <!-- PARTÍCULAS DEL FONDO -->
+    <div class="elli-particles" aria-hidden="true">
+        <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span>
+        <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span>
+        <span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s;"></span>
+        <span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s;"></span>
+        <span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s;"></span>
+        <span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s;"></span>
+        <span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s;"></span>
+        <span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s;"></span>
+        <span style="--x:12%;--y:40%;--size:2px;--duration:13s;--delay:-9s;"></span>
+        <span style="--x:88%;--y:35%;--size:3px;--duration:10s;--delay:-4s;"></span>
+    </div>
 
     <main class="customizer">
 
-        <!-- ENCABEZADO -->
         <section class="customizer-header">
             <div class="label">ELLI LAB — PERSONALIZACIÓN</div>
+
             <h1>Crea tu ELLI</h1>
+
             <p>
                 Diseña tu mochila inteligente escogiendo el modelo,
                 la forma del panel solar y el color que más te guste.
@@ -614,32 +612,28 @@
 
         <div class="customizer-grid">
 
-            <!-- OPCIONES -->
-            <section class="options">
+            <!-- OPCIONES DE PERSONALIZACIÓN -->
+            <section class="options" aria-label="Opciones de diseño">
 
                 <div class="option-box">
                     <div class="option-title">01 — MODELO</div>
 
                     <div class="choices">
                         <button type="button" class="choice active"
-                            onclick="cambiarModelo('urbana', this)">
-                            Urbana
-                        </button>
+                            aria-pressed="true"
+                            onclick="cambiarModelo('urbana', this)">Urbana</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarModelo('escolar', this)">
-                            Escolar
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarModelo('escolar', this)">Escolar</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarModelo('deportiva', this)">
-                            Deportiva
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarModelo('deportiva', this)">Deportiva</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarModelo('ejecutiva', this)">
-                            Ejecutiva
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarModelo('ejecutiva', this)">Ejecutiva</button>
                     </div>
                 </div>
 
@@ -648,24 +642,20 @@
 
                     <div class="choices">
                         <button type="button" class="choice active"
-                            onclick="cambiarPanel('cuadricula', this)">
-                            Cuadrícula
-                        </button>
+                            aria-pressed="true"
+                            onclick="cambiarPanel('cuadricula', this)">Cuadrícula</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarPanel('lineal', this)">
-                            Lineal
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarPanel('lineal', this)">Lineal</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarPanel('redondo', this)">
-                            Redondo
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarPanel('redondo', this)">Redondo</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarPanel('hexagonal', this)">
-                            Hexagonal
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarPanel('hexagonal', this)">Hexagonal</button>
                     </div>
                 </div>
 
@@ -674,32 +664,30 @@
 
                     <div class="choices">
                         <button type="button" class="choice active"
-                            onclick="cambiarColor('#242727', 'Negro', this)">
-                            Negro
-                        </button>
+                            aria-pressed="true"
+                            onclick="cambiarColor('#242727', 'Negro', this)">Negro</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarColor('#e7e7e7', 'Blanco', this)">
-                            Blanco
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarColor('#e7e7e7', 'Blanco', this)">Blanco</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarColor('#536b48', 'Verde', this)">
-                            Verde
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarColor('#536b48', 'Verde', this)">Verde</button>
 
                         <button type="button" class="choice"
-                            onclick="cambiarColor('#8a6075', 'Rosado', this)">
-                            Rosado
-                        </button>
+                            aria-pressed="false"
+                            onclick="cambiarColor('#8a6075', 'Rosado', this)">Rosado</button>
                     </div>
                 </div>
 
-                <div class="result">
+                <div class="result" aria-live="polite">
                     <div>Tu diseño personalizado:</div>
+
                     <strong id="resultado">
                         Mochila Urbana · Panel Cuadrícula · Negro
                     </strong>
+
                     <br>
 
                     <button type="button" class="reset-button"
@@ -710,11 +698,9 @@
 
             </section>
 
-            <!-- VISTA PREVIA DE LA MOCHILA -->
-            <section class="preview">
-                <div class="preview-label">
-                    VISTA PREVIA — ELLI
-                </div>
+            <!-- VISTA PREVIA -->
+            <section class="preview" aria-label="Vista previa de la mochila">
+                <div class="preview-label">VISTA PREVIA — ELLI</div>
 
                 <div class="backpack model-urbana" id="backpack">
                     <div class="solar-panel panel-cuadricula"
@@ -726,27 +712,66 @@
             </section>
 
         </div>
-        
-<!-- VOLVER AL INICIO -->
-<div class="page-navigation page-navigation-center">
-    <a href="index.html" class="page-button page-back">
-        <span>←</span>
-        <span>
-            <small>VOLVER A</small>
-            <strong>Inicio de ELLI</strong>
-        </span>
-    </a>
-</div>
 
+       
     </main>
 
+    <!-- FUNCIONAMIENTO DEL MENÚ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const boton = document.getElementById("menuToggle");
+            const menu = document.getElementById("menuLinks");
+
+            if (!boton || !menu) return;
+
+            function cerrarMenu() {
+                menu.classList.remove("open");
+                boton.classList.remove("active");
+                boton.setAttribute("aria-expanded", "false");
+                boton.setAttribute("aria-label", "Abrir menú");
+            }
+
+            boton.addEventListener("click", function (evento) {
+                evento.stopPropagation();
+
+                const abierto = !menu.classList.contains("open");
+
+                menu.classList.toggle("open", abierto);
+                boton.classList.toggle("active", abierto);
+                boton.setAttribute("aria-expanded", String(abierto));
+                boton.setAttribute(
+                    "aria-label",
+                    abierto ? "Cerrar menú" : "Abrir menú"
+                );
+            });
+
+            menu.querySelectorAll("a").forEach(function (enlace) {
+                enlace.addEventListener("click", cerrarMenu);
+            });
+
+            document.addEventListener("click", function (evento) {
+                if (
+                    !boton.contains(evento.target) &&
+                    !menu.contains(evento.target)
+                ) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("keydown", function (evento) {
+                if (evento.key === "Escape") {
+                    cerrarMenu();
+                }
+            });
+        });
+    </script>
+
+    <!-- FUNCIONES DE PERSONALIZACIÓN -->
     <script>
         let modelo = "Urbana";
         let panel = "Cuadrícula";
         let color = "Negro";
-        let colorHex = "#242727";
 
-        /* CAMBIAR MODELO */
         function cambiarModelo(nuevoModelo, boton) {
             const mochila = document.getElementById("backpack");
 
@@ -766,7 +791,6 @@
             actualizarResultado();
         }
 
-        /* CAMBIAR FORMA DEL PANEL SOLAR */
         function cambiarPanel(nuevoPanel, boton) {
             const panelSolar = document.getElementById("solarPanel");
 
@@ -792,43 +816,37 @@
             actualizarResultado();
         }
 
-        /* CAMBIAR COLOR */
         function cambiarColor(nuevoColor, nombreColor, boton) {
             const mochila = document.getElementById("backpack");
-
-            colorHex = nuevoColor;
-            color = nombreColor;
 
             mochila.style.setProperty("--bag-color", nuevoColor);
             mochila.style.backgroundColor = nuevoColor;
             mochila.style.boxShadow =
-                "0 25px 60px " + nuevoColor + "35";
+                "0 25px 60px rgba(0, 0, 0, 0.35)";
+
+            color = nombreColor;
 
             activarBoton(boton);
             actualizarResultado();
         }
 
-        /* ACTIVAR BOTÓN SELECCIONADO */
         function activarBoton(boton) {
             const grupo = boton.parentElement;
-            const botones = grupo.querySelectorAll(".choice");
 
-            botones.forEach(function (btn) {
+            grupo.querySelectorAll(".choice").forEach(function (btn) {
                 btn.classList.remove("active");
+                btn.setAttribute("aria-pressed", "false");
             });
 
             boton.classList.add("active");
+            boton.setAttribute("aria-pressed", "true");
         }
 
-        /* ACTUALIZAR RESUMEN */
         function actualizarResultado() {
             document.getElementById("resultado").textContent =
-                "Mochila " + modelo
-                + " · Panel " + panel
-                + " · " + color;
+                "Mochila " + modelo + " · Panel " + panel + " · " + color;
         }
 
-        /* RESTABLECER TODO */
         function restablecerDiseño() {
             const mochila = document.getElementById("backpack");
             const panelSolar = document.getElementById("solarPanel");
@@ -837,29 +855,27 @@
             mochila.style.setProperty("--bag-color", "#242727");
             mochila.style.backgroundColor = "#242727";
             mochila.style.boxShadow =
-                "0 25px 60px rgba(0,0,0,0.45)";
+                "0 25px 60px rgba(0, 0, 0, 0.45)";
 
             panelSolar.className = "solar-panel panel-cuadricula";
 
             modelo = "Urbana";
             panel = "Cuadrícula";
             color = "Negro";
-            colorHex = "#242727";
 
-            document.querySelectorAll(".choices").forEach(
-                function (grupo) {
-                    grupo.querySelectorAll(".choice").forEach(
-                        function (boton) {
-                            boton.classList.remove("active");
-                        }
-                    );
+            document.querySelectorAll(".choices").forEach(function (grupo) {
+                grupo.querySelectorAll(".choice").forEach(function (boton) {
+                    boton.classList.remove("active");
+                    boton.setAttribute("aria-pressed", "false");
+                });
 
-                    const primero = grupo.querySelector(".choice");
-                    if (primero) {
-                        primero.classList.add("active");
-                    }
+                const primero = grupo.querySelector(".choice");
+
+                if (primero) {
+                    primero.classList.add("active");
+                    primero.setAttribute("aria-pressed", "true");
                 }
-            );
+            });
 
             actualizarResultado();
         }
@@ -867,4 +883,3 @@
 
 </body>
 </html>
-
