@@ -3228,32 +3228,73 @@ header.navbar {
         transition: none !important;
     }
 }
-/* ELLI — AJUSTE DEFINITIVO DE LA MOCHILA */
+/* ==========================================
+   ELLI — CORRECCIÓN DE LA MOCHILA
+   Página Personaliza
+========================================== */
 
-.preview {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    position: relative !important;
-    box-sizing: border-box !important;
-    overflow: hidden !important;
-    padding: 20px 10px !important;
+/* Mantener el menú por encima del contenido */
+header.navbar {
+    position: relative;
+    z-index: 100000;
 }
 
-/* Centrar el dibujo de la mochila */
-.preview .backpack {
-    position: relative !important;
-    top: 25px !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    margin: 0 auto !important;
-    flex-shrink: 0 !important;
-    transform: scale(0.65) !important;
-    transform-origin: top center !important;
+/* Área de vista previa */
+.customizer .preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 570px;
+    height: auto;
+    padding: 65px 25px 45px;
+    overflow: visible;
 }
 
-/* Evitar que los elementos internos desplacen la mochila */
-.preview .backpack * {
-    box-sizing: border-box;
+/* Mochila: centrada y completamente visible */
+.customizer .preview .backpack {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    flex-shrink: 0;
+    transform: scale(0.85);
+    transform-origin: center center;
+    margin: 0 auto;
+}
+
+/* Evitar que el movimiento desplace la mochila */
+@keyframes elli-backpack-float {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -7px;
+    }
+}
+
+/* Ajuste para tabletas */
+@media (max-width: 850px) {
+    .customizer .preview {
+        min-height: 520px;
+        padding: 50px 20px;
+    }
+
+    .customizer .preview .backpack {
+        transform: scale(0.78);
+    }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+    .customizer .preview {
+        min-height: 440px;
+        padding: 40px 15px;
+    }
+
+    .customizer .preview .backpack {
+        transform: scale(0.66);
+    }
 }
