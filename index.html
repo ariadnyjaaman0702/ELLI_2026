@@ -8,55 +8,63 @@
     <meta name="description" content="ELLI: mochilas inteligentes con energía solar. Tecnología y comodidad para acompañarte a donde vayas.">
 
     <title>ELLI | Energía que te acompaña</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="elli-home">
 
-    <!-- MENÚ DE NAVEGACIÓN -->
-    <header class="nav">
-        <nav class="nav-inner">
+    <!-- MENÚ SUPERIOR DESPLEGABLE -->
+    <header class="navbar">
 
-            <a href="index.html" class="logo">
-                ELLI<span>.</span>
-            </a>
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
 
-           
-            
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menuLinks">
 
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-
-<div class="nav-links"></div>
-
-
-
-
+        <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Nuestro equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="personaliza.html">Personaliza tu mochila</a>
+            <a href="contactanos.html">Contáctanos</a>
         </nav>
+
     </header>
-    
-<div class="elli-particles" aria-hidden="true">
-    <span style="--x: 8%; --y: 80%; --size: 3px; --duration: 8s; --delay: -2s;"></span>
-    <span style="--x: 18%; --y: 60%; --size: 2px; --duration: 11s; --delay: -7s;"></span>
-    <span style="--x: 30%; --y: 90%; --size: 4px; --duration: 9s; --delay: -4s;"></span>
-    <span style="--x: 45%; --y: 75%; --size: 2px; --duration: 12s; --delay: -8s;"></span>
-    <span style="--x: 58%; --y: 85%; --size: 3px; --duration: 10s; --delay: -3s;"></span>
-    <span style="--x: 70%; --y: 65%; --size: 2px; --duration: 9s; --delay: -6s;"></span>
-    <span style="--x: 82%; --y: 90%; --size: 4px; --duration: 12s; --delay: -5s;"></span>
-    <span style="--x: 92%; --y: 70%; --size: 2px; --duration: 8s; --delay: -1s;"></span>
-    <span style="--x: 12%; --y: 40%; --size: 2px; --duration: 13s; --delay: -9s;"></span>
-    <span style="--x: 88%; --y: 35%; --size: 3px; --duration: 10s; --delay: -4s;"></span>
-</div>
 
+    <!-- PARTÍCULAS DECORATIVAS -->
+    <div class="elli-particles" aria-hidden="true">
+        <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s"></span>
+        <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s"></span>
+        <span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s"></span>
+        <span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s"></span>
+        <span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s"></span>
+        <span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s"></span>
+        <span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s"></span>
+        <span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s"></span>
+    </div>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
-
-        <!-- PORTADA PRINCIPAL -->
         <section class="home-hero">
 
+            <!-- TEXTO PRINCIPAL -->
             <div class="home-copy fade-up">
 
                 <p class="eyebrow">
+                    <span class="status-dot"></span>
                     TECNOLOGÍA QUE SE MUEVE CONTIGO
                 </p>
 
@@ -73,20 +81,13 @@
                 </p>
 
                 <div class="home-actions">
+                    <a href="personaliza.html" class="button">
+                        DESCUBRE TU MOCHILA ↗
+                    </a>
 
-<div class="home-actions">
-    <a href="personaliza.html" class="button">
-        DESCUBRE TU MOCHILA ↗
-    </a>
-
-    <a href="historia.html" class="button button-outline">
-        DESCUBRE NUESTRA HISTORIA ↗
-    </a>
-</div>
-
-
-                
-
+                    <a href="iniciar-sesion.html" class="button button-outline">
+                        INICIAR SESIÓN AHORA ↗
+                    </a>
                 </div>
 
                 <div class="home-note">
@@ -96,41 +97,148 @@
 
             </div>
 
-            <!-- ELEMENTO VISUAL SIN IMÁGENES -->
-            <div class="home-visual home-typography">
+            <!-- ILUSTRACIÓN ANIMADA -->
+            <div class="solar-scene">
 
-                <span class="giant-elli">
-                    ELLI<span>.</span>
-                </span>
+                <div class="scene-sun" aria-hidden="true">
+                    <div class="sun-rays"></div>
+                    <div class="sun-core"></div>
+                </div>
 
-                <span class="visual-line"></span>
+                <div class="solar-label">ENERGÍA SOLAR ACTIVA</div>
+                <div class="energy-beam"></div>
 
-                <p>ENERGÍA QUE TE ACOMPAÑA.</p>
+                <!-- MOCHILA -->
+                <div class="backpack">
+                    <div class="backpack-handle"></div>
+                    <div class="backpack-top"></div>
 
-                <span class="visual-number">
-                    SOLAR ENERGY / 001
-                </span>
+                    <div class="solar-panel">
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                        <div class="solar-cell"></div>
+                    </div>
 
-        
+                    <div class="backpack-pocket">
+                        <span>ELLI</span>
+                        <div class="pocket-line"></div>
+                    </div>
 
+                    <div class="backpack-side"></div>
+                    <div class="backpack-light"></div>
+                </div>
+
+                <!-- CABLE DE CARGA -->
+                <svg
+                    class="charging-cable"
+                    viewBox="0 0 300 180"
+                    fill="none"
+                    aria-hidden="true">
+
+                    <path
+                        class="cable-base"
+                        d="M 125 40 C 200 25, 240 70, 220 115 S 185 140, 175 125" />
+
+                    <path
+                        class="cable-energy"
+                        d="M 125 40 C 200 25, 240 70, 220 115 S 185 140, 175 125" />
+                </svg>
+
+                <!-- TELÉFONO -->
+                <div class="solar-phone">
+                    <div class="phone-camera"></div>
+
+                    <div class="phone-screen">
+                        <span class="phone-brand">ELLI POWER</span>
+
+                        <div class="phone-battery">
+                            <div class="phone-battery-fill"></div>
+                            <div class="phone-bolt">ϟ</div>
+                        </div>
+
+                        <span class="phone-percent">CARGANDO</span>
+                        <div class="phone-wave"></div>
+                    </div>
+
+                    <div class="phone-port"></div>
+                </div>
+
+                <div class="energy-caption">
+                    <span class="status-dot"></span>
+                    ENERGÍA EN MOVIMIENTO
+                </div>
+
+            </div>
+
+        </section>
     </main>
 
     <!-- PIE DE PÁGINA -->
     <footer class="home-footer">
-
-        <a href="index.html" class="footer-logo">
-            ELLI<span>.</span>
-        </a>
-
-        <p>
-            Tecnología para acompañarte a donde vayas.
-        </p>
-
-        <span>
-            © 2026 ELLI · PROYECTO EMPRESARIAL
-        </span>
-
+        <a href="index.html" class="footer-logo">ELLI<span>.</span></a>
+        <p>Tecnología para acompañarte a donde vayas.</p>
+        <span>© 2026 ELLI · PROYECTO EMPRESARIAL</span>
     </footer>
+
+    <!-- FUNCIONAMIENTO DEL MENÚ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const menuToggle = document.getElementById("menuToggle");
+            const menuLinks = document.getElementById("menuLinks");
+
+            if (!menuToggle || !menuLinks) {
+                console.error("No se encontró el botón o el menú de ELLI.");
+                return;
+            }
+
+            function cerrarMenu() {
+                menuLinks.classList.remove("open");
+                menuToggle.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Abrir menú");
+            }
+
+            menuToggle.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const abierto = menuLinks.classList.toggle("open");
+
+                menuToggle.classList.toggle("active", abierto);
+                menuToggle.setAttribute("aria-expanded", String(abierto));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    abierto ? "Cerrar menú" : "Abrir menú"
+                );
+            });
+
+            menuLinks.querySelectorAll("a").forEach(function (enlace) {
+                enlace.addEventListener("click", cerrarMenu);
+            });
+
+            document.addEventListener("click", function (event) {
+                if (
+                    !menuToggle.contains(event.target) &&
+                    !menuLinks.contains(event.target)
+                ) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    cerrarMenu();
+                }
+            });
+
+        });
+    </script>
 
 </body>
 </html>
