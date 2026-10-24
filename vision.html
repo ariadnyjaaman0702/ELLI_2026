@@ -1,41 +1,70 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Conoce la visión de ELLI y nuestras metas para el futuro.">
+
     <title>Nuestra visión | ELLI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="nav">
-        <nav class="nav-inner">
-            <a href="index.html" class="logo">ELLI<span>.</span></a>
+    <!-- MENÚ DESPLEGABLE -->
+    <header class="navbar">
 
-      
-<div class="nav-links"></div>
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
 
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menuLinks"
+            type="button">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Nuestro equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="personaliza.html">Personaliza tu mochila</a>
+            <a href="contactanos.html">Contáctanos</a>
         </nav>
+
     </header>
 
-<div class="elli-particles" aria-hidden="true">
-    <span style="--x: 8%; --y: 80%; --size: 3px; --duration: 8s; --delay: -2s;"></span>
-    <span style="--x: 18%; --y: 60%; --size: 2px; --duration: 11s; --delay: -7s;"></span>
-    <span style="--x: 30%; --y: 90%; --size: 4px; --duration: 9s; --delay: -4s;"></span>
-    <span style="--x: 45%; --y: 75%; --size: 2px; --duration: 12s; --delay: -8s;"></span>
-    <span style="--x: 58%; --y: 85%; --size: 3px; --duration: 10s; --delay: -3s;"></span>
-    <span style="--x: 70%; --y: 65%; --size: 2px; --duration: 9s; --delay: -6s;"></span>
-    <span style="--x: 82%; --y: 90%; --size: 4px; --duration: 12s; --delay: -5s;"></span>
-    <span style="--x: 92%; --y: 70%; --size: 2px; --duration: 8s; --delay: -1s;"></span>
-    <span style="--x: 12%; --y: 40%; --size: 2px; --duration: 13s; --delay: -9s;"></span>
-    <span style="--x: 88%; --y: 35%; --size: 3px; --duration: 10s; --delay: -4s;"></span>
-</div>
+    <!-- PARTÍCULAS DEL FONDO -->
+    <div class="elli-particles" aria-hidden="true">
+        <span style="--x: 8%; --y: 80%; --size: 3px; --duration: 8s; --delay: -2s;"></span>
+        <span style="--x: 18%; --y: 60%; --size: 2px; --duration: 11s; --delay: -7s;"></span>
+        <span style="--x: 30%; --y: 90%; --size: 4px; --duration: 9s; --delay: -4s;"></span>
+        <span style="--x: 45%; --y: 75%; --size: 2px; --duration: 12s; --delay: -8s;"></span>
+        <span style="--x: 58%; --y: 85%; --size: 3px; --duration: 10s; --delay: -3s;"></span>
+        <span style="--x: 70%; --y: 65%; --size: 2px; --duration: 9s; --delay: -6s;"></span>
+        <span style="--x: 82%; --y: 90%; --size: 4px; --duration: 12s; --delay: -5s;"></span>
+        <span style="--x: 92%; --y: 70%; --size: 2px; --duration: 8s; --delay: -1s;"></span>
+        <span style="--x: 12%; --y: 40%; --size: 2px; --duration: 13s; --delay: -9s;"></span>
+        <span style="--x: 88%; --y: 35%; --size: 3px; --duration: 10s; --delay: -4s;"></span>
+    </div>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="purpose-page vision-page">
 
         <section class="purpose-hero">
+
             <p class="eyebrow">04 / NUESTRA VISIÓN</p>
 
             <h1>
@@ -50,9 +79,12 @@
             </p>
 
             <span class="purpose-index">ELLI — MIRANDO AL FUTURO</span>
+
         </section>
 
+        <!-- CONTENIDO DE LA VISIÓN -->
         <section class="purpose-content">
+
             <p class="label">HACIA DÓNDE VAMOS</p>
 
             <h2>
@@ -67,37 +99,82 @@
                 productos y su compromiso con el medioambiente.
             </p>
 
-          
         </section>
-        
-<!-- NAVEGACIÓN ENTRE PÁGINAS -->
-<div class="page-navigation">
-    <a href="mision.html" class="page-button page-back">
-        <span>←</span>
-        <span>
-            <small>VOLVER A</small>
-            <strong>Nuestra misión</strong>
-        </span>
-    </a>
-
-    <a href="personaliza.html" class="page-button page-next">
-        <span>
-            <small>CONTINUAR CON</small>
-            <strong>Personaliza tu ELLI</strong>
-        </span>
-        <span>↗</span>
-    </a>
-</div>
-
 
     </main>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="home-footer">
+
         <a href="index.html" class="footer-logo">ELLI<span>.</span></a>
+
         <p>Tecnología para acompañarte a donde vayas.</p>
+
         <span>© 2026 ELLI · PROYECTO EMPRESARIAL</span>
+
     </footer>
+
+    <!-- FUNCIONAMIENTO DEL MENÚ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const menuToggle = document.getElementById("menuToggle");
+            const menuLinks = document.getElementById("menuLinks");
+
+            if (!menuToggle || !menuLinks) {
+                console.error("No se encontró el botón o el menú de navegación.");
+                return;
+            }
+
+            // Abrir y cerrar el menú
+            menuToggle.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const abierto = menuLinks.classList.toggle("open");
+
+                menuToggle.classList.toggle("active", abierto);
+                menuToggle.setAttribute("aria-expanded", String(abierto));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    abierto ? "Cerrar menú" : "Abrir menú"
+                );
+            });
+
+            // Cerrar el menú al seleccionar una página
+            menuLinks.querySelectorAll("a").forEach(function (enlace) {
+                enlace.addEventListener("click", function () {
+                    menuLinks.classList.remove("open");
+                    menuToggle.classList.remove("active");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menú");
+                });
+            });
+
+            // Cerrar al pulsar fuera del menú
+            document.addEventListener("click", function (event) {
+                if (
+                    !menuToggle.contains(event.target) &&
+                    !menuLinks.contains(event.target)
+                ) {
+                    menuLinks.classList.remove("open");
+                    menuToggle.classList.remove("active");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menú");
+                }
+            });
+
+            // Cerrar con Escape
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    menuLinks.classList.remove("open");
+                    menuToggle.classList.remove("active");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menú");
+                }
+            });
+
+        });
+    </script>
 
 </body>
 </html>
-
