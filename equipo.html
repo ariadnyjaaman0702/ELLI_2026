@@ -4,44 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Nuestro equipo | ELLI</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="nav">
-        <nav class="nav-inner">
+    <header class="navbar">
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
 
-            <a href="index.html" class="logo">ELLI<span>.</span></a>
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menuLinks"
+            type="button"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-           
-<div class="nav-links"></div>
-
-
+        <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Nuestro equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="personaliza.html">Personaliza tu mochila</a>
+            <a href="contactanos.html">Contáctanos</a>
         </nav>
     </header>
-    
-<div class="elli-particles" aria-hidden="true">
-    <span style="--x: 8%; --y: 80%; --size: 3px; --duration: 8s; --delay: -2s;"></span>
-    <span style="--x: 18%; --y: 60%; --size: 2px; --duration: 11s; --delay: -7s;"></span>
-    <span style="--x: 30%; --y: 90%; --size: 4px; --duration: 9s; --delay: -4s;"></span>
-    <span style="--x: 45%; --y: 75%; --size: 2px; --duration: 12s; --delay: -8s;"></span>
-    <span style="--x: 58%; --y: 85%; --size: 3px; --duration: 10s; --delay: -3s;"></span>
-    <span style="--x: 70%; --y: 65%; --size: 2px; --duration: 9s; --delay: -6s;"></span>
-    <span style="--x: 82%; --y: 90%; --size: 4px; --duration: 12s; --delay: -5s;"></span>
-    <span style="--x: 92%; --y: 70%; --size: 2px; --duration: 8s; --delay: -1s;"></span>
-    <span style="--x: 12%; --y: 40%; --size: 2px; --duration: 13s; --delay: -9s;"></span>
-    <span style="--x: 88%; --y: 35%; --size: 3px; --duration: 10s; --delay: -4s;"></span>
-</div>
 
+    <!-- PARTÍCULAS DEL FONDO -->
+    <div class="elli-particles" aria-hidden="true">
+        <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span>
+        <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span>
+        <span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s;"></span>
+        <span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s;"></span>
+        <span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s;"></span>
+        <span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s;"></span>
+        <span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s;"></span>
+        <span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s;"></span>
+        <span style="--x:12%;--y:40%;--size:2px;--duration:13s;--delay:-9s;"></span>
+        <span style="--x:88%;--y:35%;--size:3px;--duration:10s;--delay:-4s;"></span>
+    </div>
 
     <main class="team-page">
 
         <section class="team-hero">
-
             <p class="eyebrow">02 / LAS PERSONAS DETRÁS DE LA IDEA</p>
 
             <h1>
@@ -54,61 +67,100 @@
                 Somos el equipo que transforma una idea
                 en una solución para la vida cotidiana.
             </p>
-
         </section>
 
         <section class="team-members">
 
             <div class="team-member">
                 <span class="member-number">01</span>
-
                 <div class="member-info">
                     <h2>Ariadny <span>Jaaman</span></h2>
                     <p>Gerente general y coordinadora del proyecto</p>
                 </div>
-
-                <span class="member-symbol">↗</span>
+                <span class="member-symbol" aria-hidden="true">↗</span>
             </div>
 
             <div class="team-member">
                 <span class="member-number">02</span>
-
                 <div class="member-info">
                     <h2>Sebastián <span>Caracas</span></h2>
                     <p>Diseño de la mochila y revisión del sistema de carga</p>
                 </div>
-
-                <span class="member-symbol">↗</span>
+                <span class="member-symbol" aria-hidden="true">↗</span>
             </div>
 
             <div class="team-member">
                 <span class="member-number">03</span>
-
                 <div class="member-info">
                     <h2>María <span>Dimingo</span></h2>
                     <p>Administración, documentación y presentación del proyecto</p>
                 </div>
-
-                <span class="member-symbol">↗</span>
+                <span class="member-symbol" aria-hidden="true">↗</span>
             </div>
 
         </section>
 
         <section class="team-end">
             <p class="label">ELLI · PROYECTO EMPRESARIAL</p>
-
             <h2>Una idea que<br>construimos <span>juntos.</span></h2>
-
-        
-            </a>
         </section>
-        
-<!-- BOTONES PARA CAMBIAR DE PÁGINA -->
-<div class="page-navigation">
-    <a href="historia.html" class="page-button page-back">
-        <span>←</span>
-        <span>
-            <small>VOLVER A</small>
-            <strong>Nuestra historia</strong>
-        </span>
-    </a>
+
+    </main>
+
+    <footer class="home-footer">
+        <a href="index.html" class="footer-logo">ELLI<span>.</span></a>
+        <p>Tecnología para acompañarte a donde vayas.</p>
+        <span>© 2026 ELLI · PROYECTO EMPRESARIAL</span>
+    </footer>
+
+    <!-- MENÚ DESPLEGABLE -->
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const menuLinks = document.getElementById("menuLinks");
+
+        if (menuToggle && menuLinks) {
+            function cerrarMenu() {
+                menuLinks.classList.remove("open");
+                menuToggle.classList.remove("active");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Abrir menú");
+            }
+
+            menuToggle.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                const abierto = menuLinks.classList.toggle("open");
+
+                menuToggle.classList.toggle("active", abierto);
+                menuToggle.setAttribute("aria-expanded", String(abierto));
+                menuToggle.setAttribute(
+                    "aria-label",
+                    abierto ? "Cerrar menú" : "Abrir menú"
+                );
+            });
+
+            menuLinks.addEventListener("click", function (event) {
+                if (event.target.closest("a")) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("click", function (event) {
+                if (
+                    !menuToggle.contains(event.target) &&
+                    !menuLinks.contains(event.target)
+                ) {
+                    cerrarMenu();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    cerrarMenu();
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
