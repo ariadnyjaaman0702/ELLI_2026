@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,659 +6,338 @@
     <meta name="theme-color" content="#080909">
     <title>Personaliza tu ELLI</title>
     <link rel="stylesheet" href="style.css">
-
     <style>
         * { box-sizing: border-box; }
-
-        body {
-            margin: 0;
-            background: #080909;
-            color: #f0f1ef;
-            font-family: 'Montserrat', Arial, sans-serif;
+        body { margin:0; background:#080909; color:#f0f1ef; font-family:'Montserrat',Arial,sans-serif; }
+        button,input,select { font-family:inherit; }
+        .customizer { min-height:100vh; padding:125px 5% 70px; background:radial-gradient(circle at 50% 25%,rgba(171,255,0,.09),transparent 38%),#080909; }
+        .customizer-header { text-align:center; margin:0 auto 45px; max-width:850px; }
+        .customizer-header .label { color:#abff00; letter-spacing:3px; font-size:12px; margin-bottom:18px; }
+        .customizer-header h1 { color:#fff; font-size:clamp(38px,7vw,78px); margin:0; letter-spacing:-3px; line-height:1.1; }
+        .customizer-header p { color:#9fa4a4; max-width:650px; margin:20px auto; line-height:1.8; font-size:14px; }
+        .customizer-grid { width:100%; max-width:1150px; margin:auto; display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:28px; align-items:start; }
+        .options { min-width:0; display:flex; flex-direction:column; gap:18px; }
+        .option-box { min-width:0; border:1px solid #292d2d; background:#111313; padding:22px; }
+        .option-title { color:#fff; font-size:12px; font-weight:700; margin-bottom:16px; letter-spacing:1.5px; }
+        .choices { display:flex; flex-wrap:wrap; gap:9px; }
+        .choice { background:#1b1e1e; border:1px solid #363b3b; color:#c5c9c8; padding:11px 13px; cursor:pointer; font-size:12px; transition:background .2s,color .2s,border-color .2s,transform .2s; }
+        .choice:hover,.choice:focus-visible { border-color:#abff00; color:#fff; transform:translateY(-1px); }
+        .choice.active { background:#abff00; color:#080909; border-color:#abff00; }
+        .customizer-grid > .preview { min-width:0; width:100%; min-height:570px; display:flex; justify-content:center; align-items:flex-start; position:sticky; top:25px; overflow:hidden; isolation:isolate; padding:95px 15px 20px; border:1px solid #292d2d; background:radial-gradient(ellipse at center,rgba(171,255,0,.09),transparent 65%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:auto,35px 35px,35px 35px; }
+        .customizer-grid > .preview::before { content:""; position:absolute; inset:-40%; z-index:-1; background:conic-gradient(from 0deg,transparent 0 70%,rgba(171,255,0,.11) 78%,transparent 86%); animation:radarSpin 12s linear infinite; }
+        .preview-label { position:absolute; top:20px; left:20px; z-index:5; color:#abff00; font-size:10px; letter-spacing:2px; }
+        .preview-status { position:absolute; top:20px; right:20px; z-index:5; font-size:9px; color:#abff00; letter-spacing:1px; }
+        .backpack { --bag-color:#242727; --zip-color:#abff00; --pocket-color:rgba(0,0,0,.18); width:250px; height:320px; position:relative; flex:0 0 auto; margin:0 auto; background:var(--bag-color)!important; background-color:var(--bag-color)!important; box-shadow:0 22px 45px rgba(0,0,0,.4); transform:scale(.85); transform-origin:top center; transition:background-color .25s,box-shadow .25s,filter .25s; z-index:2; animation:floatBag 5s ease-in-out infinite; }
+        .backpack::before { content:""; position:absolute; width:35%; height:35px; border:8px solid var(--bag-color); border-bottom:none; border-radius:30px 30px 0 0; top:-23px; left:50%; transform:translateX(-50%); transition:border-color .25s; }
+        .backpack::after { content:""; position:absolute; inset:10px; border:1px solid rgba(255,255,255,.13); border-radius:inherit; pointer-events:none; }
+        .solar-panel { position:absolute; width:54%; height:32%; top:20%; left:23%; background:#101a20; border:4px solid #50595c; border-radius:3px; overflow:hidden; transition:width .3s,height .3s,top .3s,left .3s,border-radius .3s,box-shadow .3s; z-index:2; }
+        .solar-panel::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,transparent 31%,#657176 32%,#657176 34%,transparent 35%,transparent 65%,#657176 66%,#657176 68%,transparent 69%),linear-gradient(0deg,transparent 31%,#657176 32%,#657176 34%,transparent 35%,transparent 65%,#657176 66%,#657176 68%,transparent 69%); pointer-events:none; }
+        .solar-panel.solar-on { box-shadow:0 0 20px rgba(171,255,0,.75); border-color:#abff00; }
+        .solar-panel.solar-on::before { content:""; position:absolute; inset:-50%; background:linear-gradient(115deg,transparent 40%,rgba(171,255,0,.45) 50%,transparent 60%); animation:solarSweep 2s linear infinite; z-index:2; }
+        .pocket { position:absolute; width:64%; height:21%; bottom:10%; left:18%; border:3px solid var(--zip-color); background:var(--pocket-color); border-radius:10px; z-index:2; transition:border-color .2s,background .2s,border-radius .2s; }
+        .pocket::before { content:""; position:absolute; top:8px; left:15%; width:70%; height:3px; background:var(--zip-color); box-shadow:0 0 7px color-mix(in srgb,var(--zip-color) 60%,transparent); }
+        .usb { position:absolute; width:25px; height:16px; background:#abff00; right:-12px; bottom:25%; border:3px solid #080909; border-radius:4px; box-shadow:0 0 12px rgba(171,255,0,.3); z-index:3; }
+        .usb::after { content:""; position:absolute; width:4px; height:4px; background:#080909; top:3px; left:7px; }
+        .bag-name { position:absolute; top:58%; left:50%; transform:translate(-50%,-50%); max-width:75%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#abff00; font-size:13px; font-weight:800; letter-spacing:1px; text-shadow:0 0 8px rgba(171,255,0,.6); z-index:4; pointer-events:none; }
+        .backpack.name-hidden .bag-name { display:none; }
+        .model-escolar { width:255px;height:340px;border-radius:24px 24px 12px 12px; }
+        .model-escolar .solar-panel { width:60%;height:27%;top:17%;left:20%; }
+        .model-escolar .pocket { width:76%;height:25%;left:12%;bottom:8%;border-radius:5px; }
+        .model-escolar .usb { bottom:28%; }
+        .model-deportiva { width:260px;height:275px;border-radius:65px 65px 25px 25px; }
+        .model-deportiva .solar-panel { width:49%;height:29%;top:22%;left:25.5%;border-radius:20px; }
+        .model-deportiva .pocket { width:70%;height:20%;left:15%;bottom:10%;border-radius:25px; }
+        .model-deportiva .usb { bottom:24%; }
+        .model-ejecutiva { width:245px;height:320px;border-radius:12px; }
+        .model-ejecutiva .solar-panel { width:66%;height:25%;top:18%;left:17%;border-radius:2px; }
+        .model-ejecutiva .pocket { width:66%;height:18%;left:17%;bottom:12%;border-radius:3px; }
+        .model-ejecutiva .usb { bottom:25%; }
+        .panel-lineal::after { background:repeating-linear-gradient(90deg,transparent 0,transparent 17%,#657176 18%,#657176 20%,transparent 21%); }
+        .panel-redondo { border-radius:35px; }
+        .panel-redondo::after { background:radial-gradient(circle,transparent 48%,#657176 50%,#657176 53%,transparent 55%),linear-gradient(90deg,transparent 48%,#657176 49%,#657176 51%,transparent 52%),linear-gradient(0deg,transparent 48%,#657176 49%,#657176 51%,transparent 52%); }
+        .panel-hexagonal { clip-path:polygon(15% 0,85% 0,100% 50%,85% 100%,15% 100%,0 50%);border-radius:0; }
+        .panel-hexagonal::after { background:repeating-linear-gradient(60deg,transparent 0,transparent 25%,#657176 26%,#657176 28%,transparent 29%,transparent 50%),repeating-linear-gradient(-60deg,transparent 0,transparent 25%,#657176 26%,#657176 28%,transparent 29%,transparent 50%); }
+        .field-label { display:block; margin:14px 0 7px; color:#aeb4b2; font-size:11px; letter-spacing:.5px; }
+        .text-field,.select-field { width:100%; min-width:0; padding:12px 13px; background:#080909; border:1px solid #363b3b; color:#f0f1ef; outline:none; font-size:12px; }
+        .text-field:focus,.select-field:focus { border-color:#abff00; box-shadow:0 0 0 2px rgba(171,255,0,.08); }
+        .hint { color:#858c8a; font-size:11px; line-height:1.6; margin:10px 0 0; }
+        .solar-toggle { display:flex; gap:10px; align-items:center; color:#c5c9c8; font-size:12px; cursor:pointer; margin-top:14px; }
+        .solar-toggle input { accent-color:#abff00; width:16px; height:16px; }
+        .result { margin-top:5px; border-top:1px solid #292d2d; padding-top:20px; color:#9fa4a4; font-size:13px; line-height:1.8; overflow-wrap:anywhere; }
+        .result strong { color:#abff00; font-weight:600; }
+        .tech-specs { margin:12px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        .spec { padding:10px; background:#0a0c0c; border:1px solid #252929; min-width:0; }
+        .spec span { display:block; color:#828987; font-size:9px; letter-spacing:1px; margin-bottom:5px; }
+        .spec strong { display:block; font-size:12px; overflow-wrap:anywhere; }
+        .action-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+        .action-button,.reset-button { padding:12px 14px; background:transparent; border:1px solid #abff00; color:#abff00; cursor:pointer; font-size:10px; letter-spacing:.7px; transition:background .2s,color .2s,transform .2s; }
+        .action-button:hover,.reset-button:hover { background:#abff00; color:#080909; transform:translateY(-1px); }
+        .action-button.primary { background:#abff00;color:#080909;font-weight:800; }
+        .customizer-bottom { max-width:1150px; margin:30px auto 0; display:flex; flex-wrap:wrap; gap:14px; }
+        .customizer-bottom a { display:inline-block; padding:13px 18px; border:1px solid #abff00; color:#abff00; text-decoration:none; font-size:12px; }
+        .customizer-bottom a:hover { background:#abff00;color:#080909; }
+        .toast { position:fixed; bottom:20px; left:50%; transform:translate(-50%,20px); opacity:0; pointer-events:none; background:#abff00; color:#080909; padding:12px 18px; font-size:12px; font-weight:700; z-index:1000; transition:opacity .25s,transform .25s; max-width:calc(100% - 30px); text-align:center; }
+        .toast.show { opacity:1;transform:translate(-50%,0); }
+        .scan-line { position:absolute; left:0; right:0; height:2px; top:0; background:linear-gradient(90deg,transparent,#abff00,transparent); opacity:.55; box-shadow:0 0 14px #abff00; animation:scan 5s linear infinite; z-index:4; pointer-events:none; }
+        @keyframes floatBag { 0%,100%{translate:0 0} 50%{translate:0 -7px} }
+        @keyframes radarSpin { to { transform:rotate(360deg); } }
+        @keyframes solarSweep { from{transform:translateX(-45%) rotate(0deg)} to{transform:translateX(45%) rotate(0deg)} }
+        @keyframes scan { 0%{top:0;opacity:0} 10%{opacity:.6} 90%{opacity:.6} 100%{top:100%;opacity:0} }
+        @media(max-width:900px) { .customizer-grid{grid-template-columns:1fr;max-width:650px}.customizer-grid>.preview{grid-row:1;position:relative;top:auto;min-height:470px}.customizer-grid>.preview>.backpack{transform:scale(.78)}.customizer-header{margin-bottom:30px} }
+        @media(max-width:480px) { .customizer{padding:105px 16px 45px}.customizer-header h1{font-size:clamp(36px,11vw,52px);letter-spacing:-2px}.customizer-header p{font-size:13px;line-height:1.7}.customizer-grid{gap:20px}.customizer-grid>.preview{min-height:390px;padding:45px 10px}.customizer-grid>.preview>.backpack{transform:scale(.66)}.preview-label{top:15px;left:13px;font-size:9px}.preview-status{top:15px;right:12px;font-size:8px}.option-box{padding:17px}.choice{padding:10px 11px;font-size:11px}.tech-specs{grid-template-columns:1fr 1fr} }
+        @media(prefers-reduced-motion:reduce) { *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important} }
+        @media print {
+            body{background:#fff!important;color:#111!important}
+            .navbar,.elli-particles,.customizer-header p,.options,.customizer-bottom,.preview-label,.preview-status,.scan-line,.toast{display:none!important}
+            .customizer{padding:10px!important;background:#fff!important;min-height:0}
+            .customizer-header{margin:0 auto 10px}
+            .customizer-header .label,.customizer-header h1{color:#111!important}
+            .customizer-grid{display:block!important}
+            .customizer-grid>.preview{position:relative!important;top:auto!important;margin:auto;max-width:500px;min-height:450px;background:#f5f5f5!important;border:1px solid #ccc}
+            .customizer-grid>.preview>.backpack{transform:scale(.85)!important;animation:none!important}
+            .print-summary{display:block!important;color:#111!important;text-align:center;margin-top:10px}
         }
-
-        button { font-family: inherit; }
-
-        .customizer {
-            min-height: 100vh;
-            padding: 125px 5% 70px;
-            background:
-                radial-gradient(circle at 50% 25%, rgba(171,255,0,.09), transparent 38%),
-                #080909;
-        }
-
-        .customizer-header {
-            text-align: center;
-            margin: 0 auto 45px;
-            max-width: 850px;
-        }
-
-        .customizer-header .label {
-            color: #abff00;
-            letter-spacing: 3px;
-            font-size: 12px;
-            margin-bottom: 18px;
-        }
-
-        .customizer-header h1 {
-            color: #fff;
-            font-size: clamp(38px, 7vw, 78px);
-            margin: 0;
-            letter-spacing: -3px;
-            line-height: 1.1;
-        }
-
-        .customizer-header p {
-            color: #9fa4a4;
-            max-width: 650px;
-            margin: 20px auto;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .customizer-grid {
-            width: 100%;
-            max-width: 1150px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr);
-            gap: 28px;
-            align-items: start;
-        }
-
-        .options {
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .option-box {
-            min-width: 0;
-            border: 1px solid #292d2d;
-            background: #111313;
-            padding: 22px;
-        }
-
-        .option-title {
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: 1.5px;
-        }
-
-        .choices {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .choice {
-            background: #1b1e1e;
-            border: 1px solid #363b3b;
-            color: #c5c9c8;
-            padding: 11px 13px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background .2s, color .2s, border-color .2s;
-        }
-
-        .choice:hover,
-        .choice:focus-visible {
-            border-color: #abff00;
-            color: #fff;
-        }
-
-        .choice.active {
-            background: #abff00;
-            color: #080909;
-            border-color: #abff00;
-        }
-
-        .customizer-grid > .preview {
-            min-width: 0;
-            width: 100%;
-            height: 570px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-            overflow: hidden;
-            isolation: isolate;
-            padding: 95px 15px 20px;
-            border: 1px solid #292d2d;
-            background:
-                radial-gradient(ellipse at center, rgba(171,255,0,.07), transparent 65%),
-                linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-            background-size: auto, 35px 35px, 35px 35px;
-        }
-
-        .customizer-grid > .preview > .backpack {
-            position: relative;
-            top: 0;
-            left: auto;
-            right: auto;
-            margin: 0 auto;
-            flex: 0 0 auto;
-            transform: translateY(0) scale(.85);
-            transform-origin: top center;
-            z-index: 2;
-        }
-
-        .preview-label {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 5;
-            color: #abff00;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        /* MOCHILA: COLOR CONTROLADO DESDE JAVASCRIPT */
-        .customizer-grid > .preview > .backpack {
-            --bag-color: #242727;
-            width: 250px;
-            height: 320px;
-            max-width: none;
-            display: block;
-            flex: 0 0 auto;
-            margin: 0;
-            position: relative;
-            background: var(--bag-color) !important;
-            background-color: var(--bag-color) !important;
-            box-shadow: 0 22px 45px rgba(0,0,0,.4);
-            transform-origin: center center;
-            transition: background-color .25s ease, box-shadow .25s ease;
-            z-index: 2;
-        }
-
-        .customizer-grid > .preview > .backpack::before {
-            content: "";
-            position: absolute;
-            width: 35%;
-            height: 35px;
-            border: 8px solid var(--bag-color) !important;
-            border-bottom: none !important;
-            border-radius: 30px 30px 0 0;
-            top: -23px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: border-color .25s;
-        }
-
-        .preview .backpack::after {
-            content: "";
-            position: absolute;
-            inset: 10px;
-            border: 1px solid rgba(255,255,255,.1);
-            border-radius: inherit;
-            pointer-events: none;
-        }
-
-        .preview .solar-panel {
-            position: absolute;
-            width: 54%;
-            height: 32%;
-            top: 20%;
-            left: 23%;
-            background: #101a20;
-            border: 4px solid #50595c;
-            border-radius: 3px;
-            overflow: hidden;
-            transition: width .3s, height .3s, top .3s, left .3s, border-radius .3s;
-            z-index: 2;
-        }
-
-        .preview .solar-panel::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(90deg, transparent 31%, #657176 32%, #657176 34%, transparent 35%, transparent 65%, #657176 66%, #657176 68%, transparent 69%),
-                linear-gradient(0deg, transparent 31%, #657176 32%, #657176 34%, transparent 35%, transparent 65%, #657176 66%, #657176 68%, transparent 69%);
-            pointer-events: none;
-        }
-
-        .preview .pocket {
-            position: absolute;
-            width: 64%;
-            height: 21%;
-            bottom: 10%;
-            left: 18%;
-            border: 3px solid rgba(0,0,0,.3);
-            background: rgba(0,0,0,.1);
-            border-radius: 10px;
-            z-index: 2;
-        }
-
-        .preview .pocket::before {
-            content: "";
-            position: absolute;
-            top: 8px;
-            left: 15%;
-            width: 70%;
-            height: 3px;
-            background: rgba(255,255,255,.18);
-        }
-
-        .preview .usb {
-            position: absolute;
-            width: 25px;
-            height: 16px;
-            background: #abff00;
-            right: -12px;
-            bottom: 25%;
-            border: 3px solid #080909;
-            border-radius: 4px;
-            box-shadow: 0 0 12px rgba(171,255,0,.3);
-            z-index: 3;
-        }
-
-        .preview .usb::after {
-            content: "";
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #080909;
-            top: 3px;
-            left: 7px;
-        }
-
-        .preview .model-urbana {
-            width: 250px;
-            height: 320px;
-            border-radius: 42px 42px 32px 32px;
-        }
-
-        .preview .model-escolar {
-            width: 255px;
-            height: 340px;
-            border-radius: 24px 24px 12px 12px;
-        }
-
-        .preview .model-escolar .solar-panel {
-            width: 60%;
-            height: 27%;
-            top: 17%;
-            left: 20%;
-        }
-
-        .preview .model-escolar .pocket {
-            width: 76%;
-            height: 25%;
-            left: 12%;
-            bottom: 8%;
-            border-radius: 5px;
-        }
-
-        .preview .model-escolar .usb { bottom: 28%; }
-
-        .preview .model-deportiva {
-            width: 260px;
-            height: 275px;
-            border-radius: 65px 65px 25px 25px;
-        }
-
-        .preview .model-deportiva .solar-panel {
-            width: 49%;
-            height: 29%;
-            top: 22%;
-            left: 25.5%;
-            border-radius: 20px;
-        }
-
-        .preview .model-deportiva .pocket {
-            width: 70%;
-            height: 20%;
-            left: 15%;
-            bottom: 10%;
-            border-radius: 25px;
-        }
-
-        .preview .model-deportiva .usb { bottom: 24%; }
-
-        .preview .model-ejecutiva {
-            width: 245px;
-            height: 320px;
-            border-radius: 12px;
-        }
-
-        .preview .model-ejecutiva .solar-panel {
-            width: 66%;
-            height: 25%;
-            top: 18%;
-            left: 17%;
-            border-radius: 2px;
-        }
-
-        .preview .model-ejecutiva .pocket {
-            width: 66%;
-            height: 18%;
-            left: 17%;
-            bottom: 12%;
-            border-radius: 3px;
-        }
-
-        .preview .model-ejecutiva .usb { bottom: 25%; }
-
-        .preview .panel-cuadricula { border-radius: 2px; }
-
-        .preview .panel-lineal::after {
-            background: repeating-linear-gradient(90deg, transparent 0, transparent 17%, #657176 18%, #657176 20%, transparent 21%);
-        }
-
-        .preview .panel-redondo { border-radius: 35px; }
-
-        .preview .panel-redondo::after {
-            background:
-                radial-gradient(circle, transparent 48%, #657176 50%, #657176 53%, transparent 55%),
-                linear-gradient(90deg, transparent 48%, #657176 49%, #657176 51%, transparent 52%),
-                linear-gradient(0deg, transparent 48%, #657176 49%, #657176 51%, transparent 52%);
-        }
-
-        .preview .panel-hexagonal {
-            clip-path: polygon(15% 0, 85% 0, 100% 50%, 85% 100%, 15% 100%, 0 50%);
-            border-radius: 0;
-        }
-
-        .preview .panel-hexagonal::after {
-            background:
-                repeating-linear-gradient(60deg, transparent 0, transparent 25%, #657176 26%, #657176 28%, transparent 29%, transparent 50%),
-                repeating-linear-gradient(-60deg, transparent 0, transparent 25%, #657176 26%, #657176 28%, transparent 29%, transparent 50%);
-        }
-
-        .result {
-            margin-top: 5px;
-            border-top: 1px solid #292d2d;
-            padding-top: 20px;
-            color: #9fa4a4;
-            font-size: 13px;
-            line-height: 1.8;
-            overflow-wrap: anywhere;
-        }
-
-        .result strong { color: #abff00; font-weight: 600; }
-
-        .reset-button {
-            margin-top: 15px;
-            padding: 12px 16px;
-            background: transparent;
-            border: 1px solid #abff00;
-            color: #abff00;
-            cursor: pointer;
-            font-size: 11px;
-            letter-spacing: 1px;
-        }
-
-        .reset-button:hover {
-            background: #abff00;
-            color: #080909;
-        }
-
-        .customizer-bottom {
-            max-width: 1150px;
-            margin: 30px auto 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .customizer-bottom a {
-            display: inline-block;
-            padding: 13px 18px;
-            border: 1px solid #abff00;
-            color: #abff00;
-            text-decoration: none;
-            font-size: 12px;
-        }
-
-        .customizer-bottom a:hover {
-            background: #abff00;
-            color: #080909;
-        }
-
-        @media (max-width: 900px) {
-            .customizer-grid { grid-template-columns: 1fr; max-width: 650px; }
-            .customizer-grid > .preview { grid-row: 1; height: 470px; }
-            .customizer-grid > .preview > .backpack { transform: translateY(0) scale(.78); }
-            .customizer-header { margin-bottom: 30px; }
-        }
-
-        @media (max-width: 480px) {
-            .customizer { padding: 105px 16px 45px; }
-            .customizer-header h1 { font-size: clamp(36px, 11vw, 52px); letter-spacing: -2px; }
-            .customizer-header p { font-size: 13px; line-height: 1.7; }
-            .customizer-grid { gap: 20px; }
-            .customizer-grid > .preview { height: 390px; padding: 45px 10px; }
-            .customizer-grid > .preview > .backpack { transform: translateY(0) scale(.66); }
-            .preview-label { top: 15px; left: 13px; font-size: 9px; }
-            .option-box { padding: 17px; }
-            .choice { padding: 10px 11px; font-size: 11px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                transition-duration: .01ms !important;
-                animation-duration: .01ms !important;
-            }
-        }
+        .print-summary{display:none}
     </style>
 </head>
-
 <body>
 <header class="navbar">
     <a href="index.html" class="logo">ELLI<span>.</span></a>
-    <button class="menu-toggle" id="menuToggle" type="button"
-        aria-label="Abrir menú" aria-expanded="false" aria-controls="menuLinks">
-        <span></span><span></span><span></span>
-    </button>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuLinks"><span></span><span></span><span></span></button>
     <nav class="navbar-links" id="menuLinks" aria-label="Menú principal">
-        <a href="index.html">Inicio</a>
-        <a href="historia.html">Historia</a>
-        <a href="equipo.html">Nuestro equipo</a>
-        <a href="mision.html">Misión</a>
-        <a href="vision.html">Visión</a>
-        <a href="servicios.html">Servicios</a>
-        <a href="personaliza.html" aria-current="page">Personaliza tu mochila</a>
-        <a href="contactanos.html">Contáctanos</a>
+        <a href="index.html">Inicio</a><a href="historia.html">Historia</a><a href="equipo.html">Nuestro equipo</a><a href="mision.html">Misión</a><a href="vision.html">Visión</a><a href="servicios.html">Servicios</a><a href="personaliza.html" aria-current="page">Personaliza tu mochila</a><a href="contactanos.html">Contáctanos</a>
     </nav>
 </header>
-
 <div class="elli-particles" aria-hidden="true">
-    <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span>
-    <span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span>
-    <span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s;"></span>
-    <span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s;"></span>
-    <span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s;"></span>
-    <span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s;"></span>
-    <span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s;"></span>
-    <span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s;"></span>
+    <span style="--x:8%;--y:80%;--size:3px;--duration:8s;--delay:-2s;"></span><span style="--x:18%;--y:60%;--size:2px;--duration:11s;--delay:-7s;"></span><span style="--x:30%;--y:90%;--size:4px;--duration:9s;--delay:-4s;"></span><span style="--x:45%;--y:75%;--size:2px;--duration:12s;--delay:-8s;"></span><span style="--x:58%;--y:85%;--size:3px;--duration:10s;--delay:-3s;"></span><span style="--x:70%;--y:65%;--size:2px;--duration:9s;--delay:-6s;"></span><span style="--x:82%;--y:90%;--size:4px;--duration:12s;--delay:-5s;"></span><span style="--x:92%;--y:70%;--size:2px;--duration:8s;--delay:-1s;"></span>
 </div>
-
 <main class="customizer">
     <section class="customizer-header">
         <div class="label">ELLI LAB — PERSONALIZACIÓN</div>
         <h1>Crea tu ELLI</h1>
-        <p>Diseña tu mochila inteligente escogiendo el modelo, la forma del panel solar y el color que más te guste.</p>
+        <p>Diseña tu mochila inteligente escogiendo el modelo, el panel solar, los colores y los detalles. Tu idea, tu estilo.</p>
     </section>
-
     <div class="customizer-grid">
         <section class="options" aria-label="Opciones de diseño">
             <div class="option-box">
                 <div class="option-title">01 — MODELO</div>
                 <div class="choices" id="modelChoices">
-                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarModelo('urbana', this)">Urbana</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarModelo('escolar', this)">Escolar</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarModelo('deportiva', this)">Deportiva</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarModelo('ejecutiva', this)">Ejecutiva</button>
+                    <button type="button" class="choice active" aria-pressed="true" data-model="urbana" onclick="cambiarModelo('urbana',this)">Urbana</button>
+                    <button type="button" class="choice" aria-pressed="false" data-model="escolar" onclick="cambiarModelo('escolar',this)">Escolar</button>
+                    <button type="button" class="choice" aria-pressed="false" data-model="deportiva" onclick="cambiarModelo('deportiva',this)">Deportiva</button>
+                    <button type="button" class="choice" aria-pressed="false" data-model="ejecutiva" onclick="cambiarModelo('ejecutiva',this)">Ejecutiva</button>
                 </div>
             </div>
-
             <div class="option-box">
                 <div class="option-title">02 — PANEL SOLAR</div>
-                <div class="choices">
-                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarPanel('cuadricula', this)">Cuadrícula</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('lineal', this)">Lineal</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('redondo', this)">Redondo</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('hexagonal', this)">Hexagonal</button>
+                <div class="choices" id="panelChoices">
+                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarPanel('cuadricula',this)">Cuadrícula</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('lineal',this)">Lineal</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('redondo',this)">Redondo</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarPanel('hexagonal',this)">Hexagonal</button>
                 </div>
+                <label class="solar-toggle"><input id="solarToggle" type="checkbox" checked onchange="alternarSolar(this.checked)"> Activar brillo del panel solar</label>
+                <p class="hint">Efecto visual de demostración; no representa una medición de carga real.</p>
             </div>
-
             <div class="option-box">
-                <div class="option-title">03 — COLOR</div>
-                <div class="choices">
-                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarColor('#242727', 'Negro', this)">Negro</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#e7e7e7', 'Blanco', this)">Blanco</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#536b48', 'Verde', this)">Verde</button>
-                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#8a6075', 'Rosado', this)">Rosado</button>
+                <div class="option-title">03 — COLOR DE LA MOCHILA</div>
+                <div class="choices" id="colorChoices">
+                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarColor('#242727','Negro',this)">Negro</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#e7e7e7','Blanco',this)">Blanco</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#536b48','Verde',this)">Verde</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarColor('#8a6075','Rosado',this)">Rosado</button>
                 </div>
             </div>
-
-            <div class="result" aria-live="polite">
-                <div>Tu diseño personalizado:</div>
-                <strong id="resultado">Mochila Urbana · Panel Cuadrícula · Negro</strong>
-                <br>
-                <button type="button" class="reset-button" onclick="restablecerDiseño()">RESTABLECER DISEÑO</button>
+            <div class="option-box">
+                <div class="option-title">04 — NOMBRE O INICIALES</div>
+                <label class="field-label" for="bagNameInput">Texto que aparecerá en la mochila</label>
+                <input class="text-field" id="bagNameInput" type="text" maxlength="14" placeholder="Ej. ARI o ELLI" autocomplete="off">
+                <label class="solar-toggle"><input id="showNameToggle" type="checkbox" checked onchange="alternarNombre(this.checked)"> Mostrar texto en la mochila</label>
+                <p class="hint">Máximo 14 caracteres. Puedes usar tu nombre, iniciales o una palabra corta.</p>
+            </div>
+            <div class="option-box">
+                <div class="option-title">05 — BOLSILLO Y CREMALLERA</div>
+                <label class="field-label" for="pocketStyle">Forma del bolsillo frontal</label>
+                <div class="choices" id="pocketChoices">
+                    <button type="button" class="choice active" aria-pressed="true" onclick="cambiarBolsillo('clasico',this)">Clásico</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarBolsillo('cuadrado',this)">Cuadrado</button>
+                    <button type="button" class="choice" aria-pressed="false" onclick="cambiarBolsillo('redondo',this)">Redondeado</button>
+                </div>
+                <label class="field-label" for="zipColorSelect">Color de la cremallera</label>
+                <select class="select-field" id="zipColorSelect" onchange="cambiarCremallera(this.value)">
+                    <option value="#abff00">Verde neón</option><option value="#e7e7e7">Blanco</option><option value="#4ca8ff">Azul eléctrico</option><option value="#ffb000">Dorado</option><option value="#ff5f9e">Rosado</option>
+                </select>
+                <p class="hint">Estas opciones son una representación visual del diseño.</p>
+            </div>
+            <div class="option-box">
+                <div class="option-title">06 — TU FICHA TÉCNICA</div>
+                <div class="result" style="border-top:0;padding-top:0;margin-top:0">
+                    <div>Diseño seleccionado:</div><strong id="resultado">Mochila Urbana · Panel Cuadrícula · Negro</strong>
+                </div>
+                <div class="tech-specs" aria-live="polite">
+                    <div class="spec"><span>MODELO</span><strong id="specModel">Urbana</strong></div>
+                    <div class="spec"><span>COLOR</span><strong id="specColor">Negro</strong></div>
+                    <div class="spec"><span>PANEL</span><strong id="specPanel">Cuadrícula</strong></div>
+                    <div class="spec"><span>ACABADO BOLSILLO</span><strong id="specPocket">Clásico</strong></div>
+                    <div class="spec"><span>CREMALLERA</span><strong id="specZip">Verde neón</strong></div>
+                    <div class="spec"><span>PERSONALIZACIÓN</span><strong id="specName">Sin nombre</strong></div>
+                </div>
+                <p class="hint">La ficha resume las opciones elegidas; las prestaciones eléctricas dependerán del prototipo final.</p>
+                <div class="action-row">
+                    <button type="button" class="action-button primary" onclick="guardarDiseno()">GUARDAR DISEÑO PNG</button>
+                    <button type="button" class="action-button" onclick="imprimirDiseno()">IMPRIMIR / PDF</button>
+                    <button type="button" class="reset-button" onclick="restablecerDiseño()">RESTABLECER</button>
+                </div>
             </div>
         </section>
-
         <section class="preview" aria-label="Vista previa de la mochila">
-            <div class="preview-label">VISTA PREVIA — ELLI</div>
+            <div class="preview-label">VISTA PREVIA — ELLI</div><div class="preview-status" id="previewStatus">● SISTEMA ACTIVO</div><div class="scan-line" aria-hidden="true"></div>
             <div class="backpack model-urbana" id="backpack">
-                <div class="solar-panel panel-cuadricula" id="solarPanel"></div>
-                <div class="pocket"></div>
-                <div class="usb"></div>
+                <div class="solar-panel panel-cuadricula solar-on" id="solarPanel"></div>
+                <div class="pocket" id="frontPocket"></div><div class="usb"></div><div class="bag-name" id="bagNamePreview"></div>
             </div>
         </section>
     </div>
+    <div class="print-summary" id="printSummary"></div>
+    <div class="customizer-bottom"><a href="servicios.html">← Volver a servicios</a><a href="index.html">Volver al inicio</a></div>
 </main>
-
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-    // MENÚ
     const botonMenu = document.getElementById("menuToggle");
     const menu = document.getElementById("menuLinks");
+    function cerrarMenu() { menu.classList.remove("open"); botonMenu.classList.remove("active"); botonMenu.setAttribute("aria-expanded","false"); botonMenu.setAttribute("aria-label","Abrir menú"); }
+    botonMenu.addEventListener("click", function(evento) { evento.stopPropagation(); const abierto = !menu.classList.contains("open"); menu.classList.toggle("open",abierto); botonMenu.classList.toggle("active",abierto); botonMenu.setAttribute("aria-expanded",String(abierto)); botonMenu.setAttribute("aria-label",abierto?"Cerrar menú":"Abrir menú"); });
+    menu.querySelectorAll("a").forEach(enlace => enlace.addEventListener("click",cerrarMenu));
+    document.addEventListener("click",evento => { if (!botonMenu.contains(evento.target) && !menu.contains(evento.target)) cerrarMenu(); });
+    document.addEventListener("keydown",evento => { if (evento.key === "Escape") cerrarMenu(); });
 
-    function cerrarMenu() {
-        menu.classList.remove("open");
-        botonMenu.classList.remove("active");
-        botonMenu.setAttribute("aria-expanded", "false");
-        botonMenu.setAttribute("aria-label", "Abrir menú");
-    }
-
-    botonMenu.addEventListener("click", function (evento) {
-        evento.stopPropagation();
-        const abierto = !menu.classList.contains("open");
-        menu.classList.toggle("open", abierto);
-        botonMenu.classList.toggle("active", abierto);
-        botonMenu.setAttribute("aria-expanded", String(abierto));
-        botonMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-    });
-
-    menu.querySelectorAll("a").forEach(enlace => enlace.addEventListener("click", cerrarMenu));
-
-    document.addEventListener("click", evento => {
-        if (!botonMenu.contains(evento.target) && !menu.contains(evento.target)) cerrarMenu();
-    });
-
-    document.addEventListener("keydown", evento => {
-        if (evento.key === "Escape") cerrarMenu();
-    });
-
-    // PERSONALIZADOR
     const mochila = document.getElementById("backpack");
     const panelSolar = document.getElementById("solarPanel");
-
-    let modelo = "Urbana";
-    let panel = "Cuadrícula";
-    let color = "Negro";
-    let colorHex = "#242727";
+    const bolsillo = document.getElementById("frontPocket");
+    const nombresModelos = {urbana:"Urbana",escolar:"Escolar",deportiva:"Deportiva",ejecutiva:"Ejecutiva"};
+    const nombresPaneles = {cuadricula:"Cuadrícula",lineal:"Lineal",redondo:"Redondo",hexagonal:"Hexagonal"};
+    const nombresBolsillos = {clasico:"Clásico",cuadrado:"Cuadrado",redondo:"Redondeado"};
+    const nombresCremalleras = {"#abff00":"Verde neón","#e7e7e7":"Blanco","#4ca8ff":"Azul eléctrico","#ffb000":"Dorado","#ff5f9e":"Rosado"};
+    let modelo = "urbana", panel = "cuadricula", color = "Negro", colorHex = "#242727", bolsilloElegido = "clasico", cremallera = "#abff00", textoNombre = "", solarActivo = true;
 
     function activarBoton(boton) {
         const grupo = boton.parentElement;
-        grupo.querySelectorAll(".choice").forEach(btn => {
-            btn.classList.remove("active");
-            btn.setAttribute("aria-pressed", "false");
-        });
-        boton.classList.add("active");
-        boton.setAttribute("aria-pressed", "true");
+        grupo.querySelectorAll(".choice").forEach(btn => { btn.classList.remove("active"); btn.setAttribute("aria-pressed","false"); });
+        boton.classList.add("active"); boton.setAttribute("aria-pressed","true");
     }
-
-    function cambiarModelo(nuevoModelo, boton) {
-        mochila.classList.remove("model-urbana", "model-escolar", "model-deportiva", "model-ejecutiva");
-        mochila.classList.add("model-" + nuevoModelo);
-        modelo = nuevoModelo.charAt(0).toUpperCase() + nuevoModelo.slice(1);
-        activarBoton(boton);
+    function cambiarModelo(nuevoModelo,boton) {
+        mochila.classList.remove("model-urbana","model-escolar","model-deportiva","model-ejecutiva");
+        mochila.classList.add("model-"+nuevoModelo); modelo=nuevoModelo; if(boton) activarBoton(boton); actualizarResultado();
+    }
+    function cambiarPanel(nuevoPanel,boton) {
+        panelSolar.classList.remove("panel-cuadricula","panel-lineal","panel-redondo","panel-hexagonal");
+        panelSolar.classList.add("panel-"+nuevoPanel); panel=nuevoPanel; if(boton) activarBoton(boton); actualizarResultado();
+    }
+    function cambiarColor(nuevoColor,nombreColor,boton) {
+        colorHex=nuevoColor; color=nombreColor;
+        mochila.style.setProperty("--bag-color",nuevoColor,"important");
+        mochila.style.setProperty("background",nuevoColor,"important");
+        mochila.style.setProperty("background-color",nuevoColor,"important");
+        if(boton) activarBoton(boton); actualizarResultado();
+    }
+    function alternarSolar(activado) {
+        solarActivo=activado; panelSolar.classList.toggle("solar-on",activado);
+        document.getElementById("previewStatus").textContent=activado?"● SISTEMA ACTIVO":"○ PANEL EN REPOSO";
         actualizarResultado();
     }
-
-    function cambiarPanel(nuevoPanel, boton) {
-        panelSolar.classList.remove("panel-cuadricula", "panel-lineal", "panel-redondo", "panel-hexagonal");
-        panelSolar.classList.add("panel-" + nuevoPanel);
-
-        const nombres = {
-            cuadricula: "Cuadrícula",
-            lineal: "Lineal",
-            redondo: "Redondo",
-            hexagonal: "Hexagonal"
-        };
-
-        panel = nombres[nuevoPanel];
-        activarBoton(boton);
+    function alternarNombre(mostrar) { mochila.classList.toggle("name-hidden",!mostrar); }
+    document.getElementById("bagNameInput").addEventListener("input",function() {
+        textoNombre=this.value.trim().slice(0,14);
+        document.getElementById("bagNamePreview").textContent=textoNombre;
         actualizarResultado();
+    });
+    function cambiarBolsillo(estilo,boton) {
+        bolsilloElegido=estilo;
+        bolsillo.style.borderRadius=estilo==="cuadrado"?"2px":estilo==="redondo"?"22px":"10px";
+        if(boton) activarBoton(boton); actualizarResultado();
     }
-
-    function cambiarColor(nuevoColor, nombreColor, boton) {
-        colorHex = nuevoColor;
-        color = nombreColor;
-
-        // Forzar el color directamente en el elemento.
-        mochila.style.setProperty("--bag-color", nuevoColor, "important");
-        mochila.style.setProperty("background", nuevoColor, "important");
-        mochila.style.setProperty("background-color", nuevoColor, "important");
-
-        activarBoton(boton);
-        actualizarResultado();
+    function cambiarCremallera(valor) {
+        cremallera=valor; mochila.style.setProperty("--zip-color",valor);
+        document.getElementById("zipColorSelect").value=valor; actualizarResultado();
     }
-
     function actualizarResultado() {
-        document.getElementById("resultado").textContent =
-            "Mochila " + modelo + " · Panel " + panel + " · " + color;
+        const nombre = textoNombre || "Sin nombre";
+        document.getElementById("resultado").textContent=`Mochila ${nombresModelos[modelo]} · Panel ${nombresPaneles[panel]} · ${color}`;
+        document.getElementById("specModel").textContent=nombresModelos[modelo];
+        document.getElementById("specColor").textContent=color;
+        document.getElementById("specPanel").textContent=nombresPaneles[panel]+(solarActivo?" · activo":" · reposo");
+        document.getElementById("specPocket").textContent=nombresBolsillos[bolsilloElegido];
+        document.getElementById("specZip").textContent=nombresCremalleras[cremallera] || "Personalizada";
+        document.getElementById("specName").textContent=nombre;
+        document.getElementById("printSummary").textContent=`ELLI — Diseño personalizado | Modelo: ${nombresModelos[modelo]} | Color: ${color} | Panel: ${nombresPaneles[panel]} (${solarActivo?"efecto visual activado":"en reposo"}) | Bolsillo: ${nombresBolsillos[bolsilloElegido]} | Cremallera: ${nombresCremalleras[cremallera]} | Nombre: ${nombre}`;
     }
-
     function restablecerDiseño() {
-        mochila.classList.remove("model-escolar", "model-deportiva", "model-ejecutiva");
-        mochila.classList.add("model-urbana");
-
-        mochila.style.setProperty("--bag-color", "#242727", "important");
-        mochila.style.setProperty("background", "#242727", "important");
-        mochila.style.setProperty("background-color", "#242727", "important");
-
-        panelSolar.classList.remove("panel-lineal", "panel-redondo", "panel-hexagonal");
-        panelSolar.classList.add("panel-cuadricula");
-
-        modelo = "Urbana";
-        panel = "Cuadrícula";
-        color = "Negro";
-        colorHex = "#242727";
-
-        document.querySelectorAll(".choices").forEach(grupo => {
-            grupo.querySelectorAll(".choice").forEach(btn => {
-                btn.classList.remove("active");
-                btn.setAttribute("aria-pressed", "false");
-            });
-
-            const primero = grupo.querySelector(".choice");
-            if (primero) {
-                primero.classList.add("active");
-                primero.setAttribute("aria-pressed", "true");
-            }
-        });
-
-        actualizarResultado();
+        cambiarModelo("urbana",document.querySelector('[data-model="urbana"]'));
+        cambiarPanel("cuadricula",document.querySelector("#panelChoices .choice"));
+        cambiarColor("#242727","Negro",document.querySelector("#colorChoices .choice"));
+        bolsilloElegido="clasico"; bolsillo.style.borderRadius="10px";
+        document.querySelectorAll("#pocketChoices .choice").forEach((btn,i)=>{btn.classList.toggle("active",i===0);btn.setAttribute("aria-pressed",String(i===0));});
+        cremallera="#abff00"; mochila.style.setProperty("--zip-color",cremallera); document.getElementById("zipColorSelect").value=cremallera;
+        document.getElementById("bagNameInput").value=""; textoNombre=""; document.getElementById("bagNamePreview").textContent="";
+        document.getElementById("showNameToggle").checked=true; alternarNombre(true);
+        document.getElementById("solarToggle").checked=true; alternarSolar(true);
+        actualizarResultado(); mostrarAviso("Diseño restablecido.");
     }
+    function mostrarAviso(mensaje) {
+        const toast=document.getElementById("toast"); toast.textContent=mensaje; toast.classList.add("show");
+        window.clearTimeout(mostrarAviso.timer); mostrarAviso.timer=window.setTimeout(()=>toast.classList.remove("show"),2600);
+    }
+    function guardarDiseno() {
+        try {
+            const canvas=document.createElement("canvas"); canvas.width=1000; canvas.height=1000;
+            const ctx=canvas.getContext("2d");
+            ctx.fillStyle="#080909";ctx.fillRect(0,0,1000,1000);
+            const glow=ctx.createRadialGradient(500,440,80,500,440,460);glow.addColorStop(0,"rgba(171,255,0,.16)");glow.addColorStop(1,"rgba(8,9,9,0)");
+            ctx.fillStyle=glow;ctx.fillRect(0,0,1000,1000);
+            ctx.strokeStyle="rgba(255,255,255,.05)";ctx.lineWidth=1;
+            for(let x=50;x<1000;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,1000);ctx.stroke();}
+            for(let y=50;y<1000;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(1000,y);ctx.stroke();}
+            ctx.fillStyle="#abff00";ctx.font="bold 25px Arial";ctx.fillText("ELLI LAB  /  DISEÑO PERSONALIZADO",55,65);
+            ctx.fillStyle="#fff";ctx.font="bold 44px Arial";ctx.fillText("TU ELLI",55,125);
+            const scale=1.45, w=(modelo==="deportiva"?260:modelo==="ejecutiva"?245:250)*scale, h=(modelo==="deportiva"?275:modelo==="escolar"?340:320)*scale, x=(1000-w)/2, y=210;
+            const radius=modelo==="urbana"?55:modelo==="escolar"?25:modelo==="deportiva"?95:12;
+            ctx.save();ctx.shadowColor=solarActivo?"rgba(171,255,0,.25)":"rgba(0,0,0,0)";ctx.shadowBlur=solarActivo?45:12;
+            roundedRect(ctx,x,y,w,h,radius);ctx.fillStyle=colorHex;ctx.fill();ctx.restore();
+            ctx.strokeStyle="rgba(255,255,255,.2)";ctx.lineWidth=3;roundedRect(ctx,x+12,y+12,w-24,h-24,Math.max(4,radius-10));ctx.stroke();
+            // Asa
+            ctx.beginPath();ctx.strokeStyle=colorHex;ctx.lineWidth=18;ctx.lineCap="round";ctx.moveTo(430,y);ctx.quadraticCurveTo(430,y-65,500,y-65);ctx.quadraticCurveTo(570,y-65,570,y);ctx.stroke();
+            // Panel
+            const pw=w*(modelo==="ejecutiva"?.66:modelo==="escolar"?.60:modelo==="deportiva"?.49:.54), ph=h*(modelo==="escolar"?.27:modelo==="ejecutiva"?.25:.30), px=500-pw/2, py=y+h*.20;
+            ctx.fillStyle="#101a20";ctx.fillRect(px,py,pw,ph);ctx.strokeStyle=solarActivo?"#abff00":"#657176";ctx.lineWidth=5;ctx.strokeRect(px,py,pw,ph);
+            ctx.save();ctx.beginPath();ctx.rect(px,py,pw,ph);ctx.clip();ctx.strokeStyle="#657176";ctx.lineWidth=4;
+            if(panel==="lineal"){for(let xx=px+pw*.2;xx<px+pw;xx+=pw*.2){ctx.beginPath();ctx.moveTo(xx,py);ctx.lineTo(xx,py+ph);ctx.stroke();}}
+            else if(panel==="redondo"){ctx.beginPath();ctx.ellipse(px+pw/2,py+ph/2,pw*.35,ph*.35,0,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(px+pw/2,py);ctx.lineTo(px+pw/2,py+ph);ctx.moveTo(px,py+ph/2);ctx.lineTo(px+pw,py+ph/2);ctx.stroke();}
+            else if(panel==="hexagonal"){for(let i=-2;i<5;i++){ctx.beginPath();ctx.moveTo(px+i*pw*.35,py);ctx.lineTo(px+(i+1)*pw*.35,py+ph);ctx.stroke();ctx.beginPath();ctx.moveTo(px+i*pw*.35,py+ph);ctx.lineTo(px+(i+1)*pw*.35,py);ctx.stroke();}}
+            else {for(let xx=px+pw/3;xx<px+pw;xx+=pw/3){ctx.beginPath();ctx.moveTo(xx,py);ctx.lineTo(xx,py+ph);ctx.stroke();}for(let yy=py+ph/3;yy<py+ph;yy+=ph/3){ctx.beginPath();ctx.moveTo(px,yy);ctx.lineTo(px+pw,yy);ctx.stroke();}}
+            if(solarActivo){ctx.fillStyle="rgba(171,255,0,.13)";ctx.fillRect(px,py,pw,ph);}ctx.restore();
+            // Bolsillo y cremallera
+            const bx=x+w*.18, by=y+h*.68, bw=w*.64, bh=h*.20;
+            roundedRect(ctx,bx,by,bw,bh,bolsilloElegido==="cuadrado"?3:bolsilloElegido==="redondo"?28:12);
+            ctx.fillStyle="rgba(0,0,0,.16)";ctx.fill();ctx.strokeStyle=cremallera;ctx.lineWidth=6;ctx.stroke();
+            ctx.strokeStyle=cremallera;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(bx+bw*.15,by+18);ctx.lineTo(bx+bw*.85,by+18);ctx.stroke();
+            // USB
+            ctx.fillStyle="#abff00";ctx.fillRect(x+w-5,y+h*.68,28,20);ctx.strokeStyle="#080909";ctx.lineWidth=4;ctx.strokeRect(x+w-5,y+h*.68,28,20);
+            if(textoNombre&&document.getElementById("showNameToggle").checked){ctx.fillStyle="#abff00";ctx.font="bold 25px Arial";ctx.textAlign="center";ctx.fillText(textoNombre,500,y+h*.61, w*.75);ctx.textAlign="left";}
+            ctx.fillStyle="#fff";ctx.font="bold 24px Arial";ctx.fillText(`Modelo: ${nombresModelos[modelo]}  |  Color: ${color}`,55,820);
+            ctx.fillStyle="#b9bdbc";ctx.font="20px Arial";ctx.fillText(`Panel: ${nombresPaneles[panel]}  |  Bolsillo: ${nombresBolsillos[bolsilloElegido]}`,55,860);
+            ctx.fillText(`Cremallera: ${nombresCremalleras[cremallera]}  |  Nombre: ${textoNombre||"Sin nombre"}`,55,900);
+            ctx.fillStyle="#abff00";ctx.font="bold 18px Arial";ctx.fillText("Concepto visual escolar ELLI",55,950);
+            canvas.toBlob(blob=>{
+                if(!blob){mostrarAviso("No se pudo crear la imagen en este navegador.");return;}
+                const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mi-diseno-ELLI.png";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);mostrarAviso("¡Diseño descargado en formato PNG!");
+            },"image/png");
+        } catch(error) { mostrarAviso("No se pudo guardar la imagen. Prueba con Imprimir / PDF."); }
+    }
+    function roundedRect(ctx,x,y,w,h,r) {
+        r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+    }
+    function imprimirDiseno(){actualizarResultado();window.print();}
+    actualizarResultado();
 </script>
 </body>
 </html>
