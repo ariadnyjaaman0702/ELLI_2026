@@ -175,6 +175,312 @@
             <h2>LA TECNOLOGÍA <span>TE ACOMPAÑA.</span></h2>
             <p>¿Tienes una idea para tu mochila ideal?</p>
             <a href="personaliza.html" class="boton-principal">
+                PERSONALIZA TU MOCHILA 
+            </a>
+        </section>
+    </main>
+
+    <footer class="pie-pagina">
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
+        <p>Tecnología con propósito.</p>
+        <p>© 2026 ELLI · PROYECTO EMPRESARIAL</p>
+    </footer>
+
+    <dialog id="pedidoDialog" class="dialogo">
+        <button class="cerrar-dialogo" id="cerrarDialogo"
+                aria-label="Cerrar">×</button>
+
+        <p class="etiqueta">TIENDA ELLI</p>
+        <h2>Consulta tu producto</h2>
+        <p id="productoElegido"></p>
+
+        <form id="formPedido">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" name="nombre" required
+                   maxlength="80" placeholder="Escribe tu nombre">
+
+            <label for="correo">Tu correo electrónico</label>
+            <input id="correo" name="correo" type="email"
+                   required maxlength="120"
+                   placeholder="tucorreo@ejemplo.com">
+
+            <label for="mensaje">¿Qué deseas consultar?</label>
+            <textarea id="mensaje" name="mensaje" rows="3"
+                      required maxlength="500"
+                      placeholder="Escribe tu consulta"></textarea>
+
+            <button type="submit" class="boton-principal">
+                PREPARAR SOLICITUD 
+            </button>
+        </form>
+
+        <p class="aviso">
+            Se descargará un archivo de texto con tu solicitud.
+            No se envía automáticamente a ELLI.
+        </p>
+    </dialog>
+
+    <script>
+        // Menú de navegación
+        const menuToggle = document.getElementById("menuToggle");
+        const menuLinks = document.getElementById("menuLinks");
+
+        menuToggle.addEventListener("click", () => {
+            const abierto = menuLinks.classList.toggle("activo");
+            menuToggle.setAttribute("aria-expanded", abierto);
+        });
+
+        menuLinks.querySelectorAll("a").forEach(enlace => {
+            enlace.addEventListener("click", () => {
+                menuLinks.classList.remove("activo");
+                menuToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // Mostrar y ocultar detalles de los productos
+        document.querySelectorAll(".boton-detalles").forEach(boton => {
+            boton.addEventListener("click", () => {
+                const detalle = document.getElementById(
+                    "detalle-" + boton.dataset.producto
+                );
+
+                detalle.hidden = !detalle.hidden;
+                boton.textContent = detalle.hidden
+                    ? "VER DETALLES +"
+                    : "OCULTAR DETALLES −";
+            });
+        });
+
+        // Abrir el formulario de consulta
+        const pedidoDialog = document.getElementById("pedidoDialog");
+        const productoElegido = document.getElementById("productoElegido");
+        const mensaje = document.getElementById("mensaje");
+
+        document.querySelectorAll(".boton-pedido").forEach(boton => {
+            boton.addEventListener("click", () => {
+                const producto = boton.dataset.pedido;
+                productoElegido.textContent = producto;
+                mensaje.value = "Quiero recibir información sobre " + producto + ".";
+                pedidoDialog.showModal();
+            });
+        });
+
+        document.getElementById("cerrarDialogo")
+            .addEventListener("click", () => pedidoDialog.close());
+
+        pedidoDialog.addEventListener("click", evento => {
+            if (evento.target === pedidoDialog) pedidoDialog.close();
+        });
+
+        // Descargar la solicitud en un archivo de texto
+        document.getElementById("formPedido")
+            .addEventListener("submit", evento => {
+                evento.preventDefault();
+
+                const datos = new FormData(evento.currentTarget);
+                const contenido = [
+                    "SOLICITUD DE INFORMACIÓN - ELLI",
+                    "Producto: " + productoElegido.textContent,
+                    "Nombre: " + datos.get("nombre"),
+                    "Correo: " + datos.get("correo"),
+                    "Consulta: " + datos.get("mensaje")
+                ].join("\n");
+
+                const archivo = new Blob(
+                    [contenido], { type: "text/plain;charset=utf-8" }
+                );
+                const url = URL.createObjectURL(archivo);
+                const enlace = document.createElement("a");
+
+                enlace.href = url;
+                enlace.download = "solicitud-ELLI.txt";
+                enlace.click();
+
+                URL.revokeObjectURL(url);
+                pedidoDialog.close();
+                evento.currentTarget.reset();
+            });
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre la tienda ELLI: mochilas inteligentes con energía solar.">
+    <title>Tienda | ELLI</title>
+    <link rel="stylesheet" href="tienda.css">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <a href="index.html" class="logo">ELLI<span>.</span></a>
+
+        <button class="menu-boton" id="menuToggle"
+                aria-label="Abrir menú" aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="menu" id="menuLinks">
+            <a href="index.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="equipo.html">Equipo</a>
+            <a href="mision.html">Misión</a>
+            <a href="vision.html">Visión</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="personaliza.html">Personaliza</a>
+            <a href="contactanos.html">Contáctanos</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="portada">
+            <p class="etiqueta">TECNOLOGÍA PARA TU DÍA A DÍA</p>
+            <h1>LA TIENDA <span>ELLI</span></h1>
+            <p class="introduccion">
+                Descubre una nueva forma de llevar tus cosas.
+                Mochilas modernas, prácticas y pensadas para acompañarte.
+            </p>
+           
+        </section>
+
+        <section class="productos" id="productos">
+            <div class="titulo-seccion">
+                <p class="etiqueta">CONOCE NUESTRA COLECCIÓN</p>
+                <h2>PRODUCTOS <span>ELLI</span></h2>
+                <p>Encuentra el modelo que se adapta a tu estilo.</p>
+            </div>
+
+            <div class="rejilla-productos">
+
+                <article class="producto">
+                    <div class="producto-visual visual-urbano">
+                        <span class="numero">01 / ELLI</span>
+                        <div class="mochila mochila-urbana">
+                            <div class="asa"></div>
+                            <div class="bolsillo"></div>
+                            <div class="detalle-usb">USB</div>
+                        </div>
+                        <span class="categoria">USO DIARIO</span>
+                    </div>
+
+                    <div class="producto-info">
+                        <p class="subtitulo">COLECCIÓN URBANA</p>
+                        <h3>Bolso Urbano USB</h3>
+                        <p class="descripcion">
+                            Diseño moderno con espacio para tus objetos
+                            y una propuesta de carga para tus dispositivos.
+                        </p>
+                        <div class="producto-pie">
+                            <span class="precio">Cotizar</span>
+                            <button class="boton-detalles"
+                                    data-producto="urbano">
+                                VER DETALLES +
+                            </button>
+                        </div>
+                        <div class="detalles" id="detalle-urbano" hidden>
+                            <p>• Diseño para uso cotidiano.</p>
+                            <p>• Compartimentos prácticos.</p>
+                            <p>• Concepto de carga USB.</p>
+                        </div>
+                        <button class="boton-pedido"
+                                data-pedido="Bolso Urbano USB">
+                            CONSULTAR PRODUCTO 
+                        </button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <div class="producto-visual visual-outdoor">
+                        <span class="numero">02 / ELLI</span>
+                        <div class="mochila mochila-outdoor">
+                            <div class="asa"></div>
+                            <div class="panel-solar">
+                                <i></i><i></i><i></i>
+                                <i></i><i></i><i></i>
+                            </div>
+                            <div class="bolsillo"></div>
+                        </div>
+                        <span class="categoria">ENERGÍA SOLAR</span>
+                    </div>
+
+                    <div class="producto-info">
+                        <p class="subtitulo">COLECCIÓN OUTDOOR</p>
+                        <h3>Mochila Smart Outdoor</h3>
+                        <p class="descripcion">
+                            Una propuesta para quienes buscan funcionalidad
+                            y aprovechar la energía solar durante sus actividades.
+                        </p>
+                        <div class="producto-pie">
+                            <span class="precio">Cotizar</span>
+                            <button class="boton-detalles"
+                                    data-producto="outdoor">
+                                VER DETALLES +
+                            </button>
+                        </div>
+                        <div class="detalles" id="detalle-outdoor" hidden>
+                            <p>• Concepto de panel solar integrado.</p>
+                            <p>• Diseño para actividades diarias.</p>
+                            <p>• Espacio para tus pertenencias.</p>
+                        </div>
+                        <button class="boton-pedido"
+                                data-pedido="Mochila Smart Outdoor">
+                            CONSULTAR PRODUCTO 
+                        </button>
+                    </div>
+                </article>
+
+                <article class="producto">
+                    <div class="producto-visual visual-ejecutivo">
+                        <span class="numero">03 / ELLI</span>
+                        <div class="maletin">
+                            <div class="maletin-asa"></div>
+                            <div class="maletin-frente">
+                                <div class="linea-maletin"></div>
+                                <span>ELLI</span>
+                            </div>
+                        </div>
+                        <span class="categoria">ESTILO EJECUTIVO</span>
+                    </div>
+
+                    <div class="producto-info">
+                        <p class="subtitulo">COLECCIÓN TECH</p>
+                        <h3>Maletín Ejecutivo Tech</h3>
+                        <p class="descripcion">
+                            Un diseño pensado para llevar tus objetos
+                            de estudio o trabajo de forma organizada.
+                        </p>
+                        <div class="producto-pie">
+                            <span class="precio">Cotizar</span>
+                            <button class="boton-detalles"
+                                    data-producto="ejecutivo">
+                                VER DETALLES +
+                            </button>
+                        </div>
+                        <div class="detalles" id="detalle-ejecutivo" hidden>
+                            <p>• Compartimentos organizados.</p>
+                            <p>• Estilo profesional y moderno.</p>
+                            <p>• Concepto de conectividad.</p>
+                        </div>
+                        <button class="boton-pedido"
+                                data-pedido="Maletín Ejecutivo Tech">
+                            CONSULTAR PRODUCTO 
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="banner">
+            <p class="etiqueta">TU ESTILO, TU ENERGÍA</p>
+            <h2>LA TECNOLOGÍA <span>TE ACOMPAÑA.</span></h2>
+            <p>¿Tienes una idea para tu mochila ideal?</p>
+            <a href="personaliza.html" class="boton-principal">
                 PERSONALIZA TU MOCHILA ↗
             </a>
         </section>
